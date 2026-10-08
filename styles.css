@@ -2246,8 +2246,10 @@ body:has(.case-kicker + .case-title[id*="flight"]) .case-page {
   padding: clamp(30px, 4vw, 48px);
   border: 1px solid var(--rule);
   border-top: 4px solid var(--accent);
+  border-radius: 12px;
   background: var(--canvas);
   flex-direction: column;
+  overflow: hidden;
 }
 
 .project-card-meta {
@@ -2436,6 +2438,7 @@ body {
   min-height: 46px;
   padding: 11px 17px;
   border: 1px solid var(--accent);
+  border-radius: 10px;
   background: var(--accent);
   align-items: center;
   justify-content: center;
@@ -2885,7 +2888,9 @@ body {
   min-height: 510px;
   padding: clamp(28px, 4vw, 42px);
   border: 1px solid var(--rule);
+  border-radius: 12px;
   background: var(--surface);
+  overflow: hidden;
 }
 
 .research-card[data-research="ux"] {
