@@ -1,0 +1,9 @@
+.DS_Store
+.env
+.env.*
+.openai/
+
+# Keep private source documents and the unused portrait out of public builds.
+*.pdf
+*.docx
+assets/anuska-acharya-portrait.jpeg

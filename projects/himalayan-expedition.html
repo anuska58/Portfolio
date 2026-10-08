@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="A case study by Anuska Acharya on designing an interactive analysis of historical Himalayan expedition risk, success, team size, season, and altitude."
+    >
+    <meta name="theme-color" content="#f3f0e9">
+    <meta property="og:title" content="Himalayan Expedition Risk Analysis — Anuska Acharya">
+    <meta
+      property="og:description"
+      content="From 11,358 historical expedition records to an interactive, denominator-aware risk dashboard."
+    >
+    <meta property="og:type" content="article">
+    <title>Himalayan Expedition Risk Analysis — Anuska Acharya</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header" data-site-header>
+      <div class="nav-shell">
+        <a class="wordmark" href="../index.html#home" aria-label="Anuska Acharya, back to home">
+          <span class="wordmark-name">Anuska Acharya</span>
+          <span class="wordmark-role">Data science · UX research</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-navigation"
+          data-nav-toggle
+        >
+          <span class="nav-toggle-label">Menu</span>
+          <span class="nav-toggle-icon" aria-hidden="true"></span>
+        </button>
+
+        <nav id="site-navigation" class="site-navigation" aria-label="Primary" data-navigation>
+          <ul>
+            <li><a href="../index.html#work">Work</a></li>
+            <li><a href="../index.html#research">Research</a></li>
+            <li><a href="../index.html#experience">Experience</a></li>
+            <li><a href="../index.html#about">About</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+          </ul>
+          <a class="nav-cta" href="../index.html#work">
+            All projects <span aria-hidden="true">←</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="case-page">
+      <section class="case-hero" aria-labelledby="case-title">
+        <div class="case-hero-inner">
+          <a class="case-back-link" href="../index.html#work">
+            <span aria-hidden="true">←</span> Back to selected work
+          </a>
+          <p class="case-kicker">Case study 01 · Interactive analysis</p>
+          <h1 id="case-title" class="case-title">Himalayan Expedition Risk Analysis</h1>
+          <p class="case-dek">
+            I turned 75 years of expedition records into a dashboard that helps people compare
+            historical risk, success, team size, season, and altitude—without losing sight of the
+            denominator behind each number.
+          </p>
+
+          <div class="case-actions" aria-label="Project actions">
+            <a
+              class="button"
+              href="https://himalayan-expedition-analysis.onrender.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Explore the live dashboard <span aria-hidden="true">↗</span>
+              <span class="visually-hidden">(opens in a new tab)</span>
+            </a>
+            <a class="button button-secondary" href="#findings">
+              See key findings <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+
+          <dl class="case-meta" aria-label="Project details">
+            <div>
+              <dt>Role</dt>
+              <dd>Data analyst &amp; dashboard designer</dd>
+            </div>
+            <div>
+              <dt>Timeline</dt>
+              <dd><time datetime="2026-05">May 2026</time></dd>
+            </div>
+            <div>
+              <dt>Dataset</dt>
+              <dd>11,358 expeditions · 414 peaks · 1950–2024</dd>
+            </div>
+            <div>
+              <dt>Tools</dt>
+              <dd>Python · Pandas · Plotly · Dash</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <div class="case-layout">
+        <aside class="case-nav">
+          <p class="case-nav-label">On this page</p>
+          <nav aria-label="Case study sections">
+            <ol>
+              <li><a href="#overview">Overview</a></li>
+              <li><a href="#process">Preparation</a></li>
+              <li><a href="#architecture">Dashboard structure</a></li>
+              <li><a href="#findings">Findings</a></li>
+              <li><a href="#decisions">Design decisions</a></li>
+              <li><a href="#limitations">Limitations</a></li>
+              <li><a href="#reflection">Reflection</a></li>
+            </ol>
+          </nav>
+        </aside>
+
+        <article class="case-content">
+          <section id="overview" class="case-section" aria-labelledby="overview-title">
+            <p class="case-section-index">01 · Overview</p>
+            <h2 id="overview-title">Making a large historical record explorable</h2>
+            <p class="case-lead">
+              A raw death count can make one season or team type look dangerous simply because more
+              expeditions took place there. I built this project to keep exposure visible, let people
+              move between multiple views of the record, and make comparisons with the right unit.
+            </p>
+
+            <div class="insight-callout insight-callout-wide">
+              <p class="callout-label">Dataset at a glance</p>
+              <p class="callout-stat">11,358 expedition records across 414 peaks</p>
+              <p>
+                The analysis spans 1950–2024. In the prepared dataset, 55.1% of expeditions recorded
+                main-peak success. That is an expedition-level share, not an individual climber’s
+                probability of summiting.
+              </p>
+            </div>
+
+            <div class="case-questions" aria-labelledby="questions-title">
+              <h3 id="questions-title">Questions I designed around</h3>
+              <div class="case-question">
+                <span aria-hidden="true">01</span>
+                <p>How does the number of member deaths per 100 expeditions vary by season?</p>
+              </div>
+              <div class="case-question">
+                <span aria-hidden="true">02</span>
+                <p>How do observed summit success and per-member fatality vary across team-size groups?</p>
+              </div>
+              <div class="case-question">
+                <span aria-hidden="true">03</span>
+                <p>How do expedition volume, termination reasons, and altitude add context to those patterns?</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="process" class="case-section" aria-labelledby="process-title">
+            <p class="case-section-index">02 · Preparation</p>
+            <h2 id="process-title">From expedition records to comparable measures</h2>
+            <p>
+              The Himalayan Database records expeditions, not a controlled experiment. I prepared
+              the fields for consistent filtering, then calculated separate measures for expeditions
+              and individual members so their denominators would not be mixed.
+            </p>
+
+            <ol class="process-grid">
+              <li>
+                <p class="process-number">01</p>
+                <h3>Scope</h3>
+                <p>Retained records from Spring, Autumn, Winter, and Summer between 1950 and 2024.</p>
+              </li>
+              <li>
+                <p class="process-number">02</p>
+                <h3>Standardize</h3>
+                <p>Normalized season labels and converted year, team size, death, success, and highpoint fields for analysis.</p>
+              </li>
+              <li>
+                <p class="process-number">03</p>
+                <h3>Engineer</h3>
+                <p>Created five team-size bands and grouped detailed termination reasons into readable outcome categories.</p>
+              </li>
+              <li>
+                <p class="process-number">04</p>
+                <h3>Calculate</h3>
+                <p>Separated deaths per 100 expeditions, deaths per member, and expedition-level success into distinct metrics.</p>
+              </li>
+              <li>
+                <p class="process-number">05</p>
+                <h3>Build</h3>
+                <p>Connected season, year, and Everest-status filters to the summary measures and seven analytical views.</p>
+              </li>
+              <li>
+                <p class="process-number">06</p>
+                <h3>Qualify</h3>
+                <p>Flagged groups with fewer than 30 expeditions and added explanatory notes beside the visual evidence.</p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="architecture" class="case-section" aria-labelledby="architecture-title">
+            <p class="case-section-index">03 · Dashboard structure</p>
+            <h2 id="architecture-title">A path from orientation to interpretation</h2>
+            <p>
+              I organized the dashboard in layers, so a first-time visitor can understand the scope
+              before making comparisons and can open supporting context when a pattern needs explanation.
+            </p>
+
+            <div class="dashboard-ia" aria-label="Dashboard information architecture">
+              <article>
+                <p class="ia-step">01 · Orient</p>
+                <h3>Five summary measures</h3>
+                <p>Total expeditions, member deaths, deaths per 100 expeditions, average team size, and main-peak success.</p>
+              </article>
+              <article>
+                <p class="ia-step">02 · Compare</p>
+                <h3>Seven analytical views</h3>
+                <p>Season, team size, time, termination reason, altitude, and their intersections provide different lenses.</p>
+              </article>
+              <article>
+                <p class="ia-step">03 · Interrogate</p>
+                <h3>One shared filter state</h3>
+                <p>Season, year range, and Everest status update every measure and chart together for consistent comparison.</p>
+              </article>
+              <article>
+                <p class="ia-step">04 · Explain</p>
+                <h3>Context beside the chart</h3>
+                <p>Chart notes define the unit, state the observation, and point out low-volume groups or alternative readings.</p>
+              </article>
+            </div>
+          </section>
+
+          <section id="findings" class="case-section" aria-labelledby="findings-title">
+            <p class="case-section-index">04 · Selected findings</p>
+            <h2 id="findings-title">Three patterns worth examining closely</h2>
+            <p>
+              These are descriptive results from the full 1950–2024 view. Select a lens to compare
+              the evidence. The charts remain readable in sequence when scripting is unavailable.
+            </p>
+
+            <div class="finding-explorer" data-finding-tabs>
+              <div class="finding-tabs" role="tablist" aria-label="Explore findings by lens">
+                <button
+                  id="tab-season"
+                  class="finding-tab"
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="panel-season"
+                  tabindex="0"
+                  data-finding-tab="season"
+                >
+                  Season
+                </button>
+                <button
+                  id="tab-team"
+                  class="finding-tab"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="panel-team"
+                  tabindex="-1"
+                  data-finding-tab="team"
+                >
+                  Team size
+                </button>
+                <button
+                  id="tab-altitude"
+                  class="finding-tab"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="panel-altitude"
+                  tabindex="-1"
+                  data-finding-tab="altitude"
+                >
+                  Altitude
+                </button>
+              </div>
+
+              <div class="finding-panels">
+                <section
+                  id="panel-season"
+                  class="finding-panel"
+                  role="tabpanel"
+                  aria-labelledby="tab-season"
+                  data-finding-panel="season"
+                >
+                  <div class="finding-copy">
+                    <p class="finding-number">Finding 01</p>
+                    <h3>Winter recorded the highest member-death frequency per expedition.</h3>
+                    <p>
+                      Winter reached 9.44 member deaths per 100 expeditions. Spring was about 7.8,
+                      Autumn about 6.5, and Summer about 1.0 in the prepared records.
+                    </p>
+                  </div>
+
+                  <figure class="chart-shell">
+                    <figcaption>Member deaths per 100 expeditions, by season</figcaption>
+                    <svg
+                      class="case-chart"
+                      viewBox="0 0 720 360"
+                      role="img"
+                      aria-labelledby="season-chart-title season-chart-desc"
+                    >
+                      <title id="season-chart-title">Member deaths per 100 expeditions by season</title>
+                      <desc id="season-chart-desc">
+                        Horizontal bars show Winter at 9.44, Spring at approximately 7.8, Autumn at
+                        approximately 6.5, and Summer at approximately 1.0 member deaths per 100 expeditions.
+                      </desc>
+                      <g class="chart-grid" stroke="#d7d2c8" stroke-width="1">
+                        <line x1="178" y1="54" x2="178" y2="306"></line>
+                        <line x1="270" y1="54" x2="270" y2="306"></line>
+                        <line x1="362" y1="54" x2="362" y2="306"></line>
+                        <line x1="454" y1="54" x2="454" y2="306"></line>
+                        <line x1="546" y1="54" x2="546" y2="306"></line>
+                        <line x1="638" y1="54" x2="638" y2="306"></line>
+                      </g>
+                      <g class="chart-axis-labels" fill="#5d655f" font-size="13" text-anchor="middle">
+                        <text x="178" y="330">0</text>
+                        <text x="270" y="330">2</text>
+                        <text x="362" y="330">4</text>
+                        <text x="454" y="330">6</text>
+                        <text x="546" y="330">8</text>
+                        <text x="638" y="330">10</text>
+                      </g>
+                      <g class="chart-category-labels" fill="#1f2421" font-size="15" text-anchor="end">
+                        <text x="158" y="102">Winter</text>
+                        <text x="158" y="166">Spring</text>
+                        <text x="158" y="230">Autumn</text>
+                        <text x="158" y="294">Summer</text>
+                      </g>
+                      <g class="chart-bars">
+                        <rect x="178" y="78" width="434" height="30" rx="4" fill="#78384f"></rect>
+                        <rect x="178" y="142" width="359" height="30" rx="4" fill="#a0687c"></rect>
+                        <rect x="178" y="206" width="299" height="30" rx="4" fill="#60766c"></rect>
+                        <rect x="178" y="270" width="46" height="30" rx="4" fill="#aab5ad"></rect>
+                      </g>
+                      <g class="chart-values" fill="#1f2421" font-size="14" font-weight="700">
+                        <text x="620" y="99">9.44</text>
+                        <text x="545" y="163">≈7.8</text>
+                        <text x="485" y="227">≈6.5</text>
+                        <text x="233" y="291">≈1.0</text>
+                      </g>
+                    </svg>
+                    <p class="chart-note">Unit: total member deaths ÷ expedition records × 100.</p>
+                  </figure>
+
+                  <div class="insight-callout">
+                    <p class="callout-label">How to read this</p>
+                    <p>
+                      This is a frequency per 100 expeditions—not the percentage of expeditions with a
+                      death and not an individual climber’s fatality probability. Summer also contains
+                      far fewer expeditions, so its estimate deserves extra caution.
+                    </p>
+                  </div>
+                </section>
+
+                <section
+                  id="panel-team"
+                  class="finding-panel"
+                  role="tabpanel"
+                  aria-labelledby="tab-team"
+                  data-finding-panel="team"
+                >
+                  <div class="finding-copy">
+                    <p class="finding-number">Finding 02</p>
+                    <h3>Observed success increased across the team-size spectrum.</h3>
+                    <p>
+                      Main-peak success was 48.4% among expeditions with 1–3 members and 78.7% among
+                      those with 26 or more members.
+                    </p>
+                  </div>
+
+                  <figure class="chart-shell">
+                    <figcaption>Main-peak success at the team-size endpoints</figcaption>
+                    <svg
+                      class="case-chart"
+                      viewBox="0 0 720 360"
+                      role="img"
+                      aria-labelledby="team-chart-title team-chart-desc"
+                    >
+                      <title id="team-chart-title">Main-peak success for smallest and largest team groups</title>
+                      <desc id="team-chart-desc">
+                        Vertical bars compare a 48.4 percent success share for expeditions with one to
+                        three members and 78.7 percent for expeditions with 26 or more members.
+                      </desc>
+                      <g class="chart-grid" stroke="#d7d2c8" stroke-width="1">
+                        <line x1="100" y1="290" x2="650" y2="290"></line>
+                        <line x1="100" y1="236" x2="650" y2="236"></line>
+                        <line x1="100" y1="182" x2="650" y2="182"></line>
+                        <line x1="100" y1="128" x2="650" y2="128"></line>
+                        <line x1="100" y1="74" x2="650" y2="74"></line>
+                      </g>
+                      <g class="chart-axis-labels" fill="#5d655f" font-size="13" text-anchor="end">
+                        <text x="85" y="295">0%</text>
+                        <text x="85" y="241">20%</text>
+                        <text x="85" y="187">40%</text>
+                        <text x="85" y="133">60%</text>
+                        <text x="85" y="79">80%</text>
+                      </g>
+                      <g class="chart-bars">
+                        <rect x="188" y="159" width="132" height="131" rx="5" fill="#9aa9a0"></rect>
+                        <rect x="430" y="78" width="132" height="212" rx="5" fill="#60766c"></rect>
+                      </g>
+                      <g class="chart-values" fill="#1f2421" font-size="18" font-weight="700" text-anchor="middle">
+                        <text x="254" y="143">48.4%</text>
+                        <text x="496" y="62">78.7%</text>
+                      </g>
+                      <g class="chart-category-labels" fill="#1f2421" font-size="15" text-anchor="middle">
+                        <text x="254" y="322">1–3 members</text>
+                        <text x="496" y="322">26+ members</text>
+                      </g>
+                    </svg>
+                    <p class="chart-note">Unit: expeditions recording main-peak success ÷ expeditions in each team-size group.</p>
+                  </figure>
+
+                  <div class="insight-callout">
+                    <p class="callout-label">Associated pattern, not a causal effect</p>
+                    <p>
+                      Per-member fatality also moved from about 1.49% in the smallest group to about
+                      0.95% in the largest. Team size may stand in for era, route, peak choice, guides,
+                      oxygen, or logistical support; this analysis does not show that adding members
+                      causes better outcomes.
+                    </p>
+                  </div>
+                </section>
+
+                <section
+                  id="panel-altitude"
+                  class="finding-panel"
+                  role="tabpanel"
+                  aria-labelledby="tab-altitude"
+                  data-finding-panel="altitude"
+                >
+                  <div class="finding-copy">
+                    <p class="finding-number">Finding 03</p>
+                    <h3>Larger teams operated at higher recorded highpoints.</h3>
+                    <p>
+                      Expeditions with 1–3 members averaged a 7,369 m highpoint. The average for teams
+                      with 26 or more members was 8,123 m—above the 8,000 m reference line.
+                    </p>
+                  </div>
+
+                  <figure class="chart-shell">
+                    <figcaption>Average recorded highpoint at the team-size endpoints</figcaption>
+                    <svg
+                      class="case-chart"
+                      viewBox="0 0 720 340"
+                      role="img"
+                      aria-labelledby="altitude-chart-title altitude-chart-desc"
+                    >
+                      <title id="altitude-chart-title">Average recorded expedition highpoint by team size</title>
+                      <desc id="altitude-chart-desc">
+                        A horizontal dot plot shows an average highpoint of 7,369 meters for teams with
+                        one to three members and 8,123 meters for teams with 26 or more members. A
+                        reference line marks 8,000 meters.
+                      </desc>
+                      <g class="chart-grid" stroke="#d7d2c8" stroke-width="1">
+                        <line x1="154" y1="250" x2="638" y2="250"></line>
+                        <line x1="154" y1="70" x2="154" y2="258"></line>
+                        <line x1="340" y1="70" x2="340" y2="258"></line>
+                        <line x1="526" y1="70" x2="526" y2="258"></line>
+                        <line x1="638" y1="70" x2="638" y2="258"></line>
+                      </g>
+                      <line x1="526" y1="48" x2="526" y2="258" stroke="#78384f" stroke-width="2" stroke-dasharray="6 7"></line>
+                      <text x="526" y="35" fill="#78384f" font-size="13" text-anchor="middle">8,000 m reference</text>
+                      <g class="chart-category-labels" fill="#1f2421" font-size="15" text-anchor="end">
+                        <text x="132" y="121">1–3 members</text>
+                        <text x="132" y="207">26+ members</text>
+                      </g>
+                      <g class="chart-series" stroke-linecap="round">
+                        <line x1="154" y1="116" x2="291" y2="116" stroke="#9aa9a0" stroke-width="8"></line>
+                        <circle cx="291" cy="116" r="11" fill="#60766c"></circle>
+                        <line x1="154" y1="202" x2="572" y2="202" stroke="#a0687c" stroke-width="8"></line>
+                        <circle cx="572" cy="202" r="11" fill="#78384f"></circle>
+                      </g>
+                      <g class="chart-values" fill="#1f2421" font-size="15" font-weight="700">
+                        <text x="309" y="122">7,369 m</text>
+                        <text x="590" y="208">8,123 m</text>
+                      </g>
+                      <g class="chart-axis-labels" fill="#5d655f" font-size="13" text-anchor="middle">
+                        <text x="154" y="284">7,000</text>
+                        <text x="340" y="284">7,500</text>
+                        <text x="526" y="284">8,000</text>
+                        <text x="638" y="284">8,300 m</text>
+                      </g>
+                    </svg>
+                    <p class="chart-note">Unit: mean of the recorded highpoint field for expeditions in each team-size group.</p>
+                  </figure>
+
+                  <div class="insight-callout">
+                    <p class="callout-label">Context matters</p>
+                    <p>
+                      A highpoint is not the same as a successful summit. The pattern shows where the
+                      groups operated in this record; it does not mean team size itself produced the
+                      altitude difference.
+                    </p>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </section>
+
+          <section id="decisions" class="case-section" aria-labelledby="decisions-title">
+            <p class="case-section-index">05 · Design decisions</p>
+            <h2 id="decisions-title">Designing for interpretation, not just interaction</h2>
+
+            <div class="decision-list">
+              <article>
+                <p class="decision-index">A</p>
+                <div>
+                  <h3>Put the denominator in the interface</h3>
+                  <p>
+                    “Deaths per 100 expeditions” and “deaths per member” answer different questions.
+                    I kept those labels explicit in chart titles, axes, notes, and hover details.
+                  </p>
+                </div>
+              </article>
+              <article>
+                <p class="decision-index">B</p>
+                <div>
+                  <h3>Make one filter update the whole story</h3>
+                  <p>
+                    A shared season, year, and peak filter keeps summary cards and charts in the same
+                    analytical state, reducing accidental apples-to-oranges comparisons.
+                  </p>
+                </div>
+              </article>
+              <article>
+                <p class="decision-index">C</p>
+                <div>
+                  <h3>Pair color with text</h3>
+                  <p>
+                    Direct values, labels, patterns, and written chart notes carry meaning alongside
+                    color so the evidence is still understandable when color is not the primary cue.
+                  </p>
+                </div>
+              </article>
+              <article>
+                <p class="decision-index">D</p>
+                <div>
+                  <h3>Keep uncertainty visible</h3>
+                  <p>
+                    Small groups receive a low-sample signal, and the written interpretations use
+                    observational language instead of turning correlations into recommendations.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section id="limitations" class="case-section" aria-labelledby="limitations-title">
+            <p class="case-section-index">06 · Limitations</p>
+            <h2 id="limitations-title">What this dashboard cannot tell us</h2>
+
+            <div class="limitation-grid">
+              <article>
+                <h3>No causal conclusion</h3>
+                <p>
+                  These are historical, observational records. Team size, season, success, and mortality
+                  may all be related to peak, route, era, support, or expedition objective.
+                </p>
+              </article>
+              <article>
+                <h3>Recording varies</h3>
+                <p>
+                  Coverage and field definitions may differ across decades. Missing or source-coded zero
+                  values can affect grouped measures, especially altitude summaries.
+                </p>
+              </article>
+              <article>
+                <h3>Aggregation hides variation</h3>
+                <p>
+                  A season-wide or team-wide average can conceal major differences between peaks, routes,
+                  years, experience levels, commercial models, and weather events.
+                </p>
+              </article>
+              <article>
+                <h3>Not a safety forecast</h3>
+                <p>
+                  The dashboard describes a historical dataset. It is not a predictive model and should
+                  not be used to estimate personal risk or make expedition-safety decisions.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section id="reflection" class="case-section case-reflection" aria-labelledby="reflection-title">
+            <p class="case-section-index">07 · Reflection</p>
+            <h2 id="reflection-title">The interface is part of the analysis</h2>
+            <p class="case-lead">
+              This project reinforced that a correct calculation is not enough: the denominator,
+              comparison set, caveat, and interaction state must also be visible. Building the dashboard
+              pushed me to treat explanatory writing and information architecture as analytical work,
+              not decoration added after the charts.
+            </p>
+            <p>
+              A next iteration would model differences within comparable peaks and eras, audit missingness
+              more explicitly, and add confidence intervals so visitors can see which apparent gaps remain
+              uncertain—not only which bar is taller.
+            </p>
+          </section>
+
+          <a class="next-case" href="flight-delay-analysis.html">
+            <span>
+              <span class="next-case-label">Next case study</span>
+              Flight Delay Analysis
+            </span>
+            <span class="next-case-arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>Research with context. Data with purpose.</p>
+      <p>© <span data-current-year>2026</span> Anuska Acharya</p>
+      <a href="#main-content">Back to top <span aria-hidden="true">↑</span></a>
+    </footer>
+  </body>
+</html>

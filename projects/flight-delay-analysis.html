@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="A statistical case study by Anuska Acharya examining departure and arrival delays across 336,776 flights from New York City in 2013."
+    >
+    <meta name="theme-color" content="#f3f0e9">
+    <meta property="og:title" content="Flight Delay Analysis — Anuska Acharya">
+    <meta
+      property="og:description"
+      content="From exploratory analysis to hypothesis testing and regression: a careful study of delay patterns in the nycflights13 data."
+    >
+    <meta property="og:type" content="article">
+    <title>Flight Delay Analysis — Anuska Acharya</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header" data-site-header>
+      <div class="nav-shell">
+        <a class="wordmark" href="../index.html#home" aria-label="Anuska Acharya, home">
+          <span class="wordmark-name">Anuska Acharya</span>
+          <span class="wordmark-role">Data science · UX research</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-navigation"
+          data-nav-toggle
+        >
+          <span class="nav-toggle-label">Menu</span>
+          <span class="nav-toggle-icon" aria-hidden="true"></span>
+        </button>
+
+        <nav id="site-navigation" class="site-navigation" aria-label="Primary" data-navigation>
+          <ul>
+            <li><a href="../index.html#work">Work</a></li>
+            <li><a href="../index.html#research">Research</a></li>
+            <li><a href="../index.html#experience">Experience</a></li>
+            <li><a href="../index.html#about">About</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+          </ul>
+          <a class="nav-cta" href="../index.html#work">
+            All projects <span aria-hidden="true">←</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="case-page" data-case="flight">
+      <section class="case-hero" aria-labelledby="case-title">
+        <div class="case-hero-inner">
+          <a class="case-back-link" href="../index.html#work">
+            <span aria-hidden="true">←</span> Back to selected work
+          </a>
+          <p class="case-kicker">Case study 02 · Statistical analysis</p>
+          <h1 id="case-title" class="case-title">When do flight delays compound—and how much do they carry through?</h1>
+          <p class="case-dek">
+            I studied a year of New York City departures to move from broad exploratory patterns to
+            testable questions. The result is a seven-part analysis of timing, distance, carrier
+            differences, data quality, and the relationship between departure and arrival delay.
+          </p>
+
+          <div class="case-actions" aria-label="Project links">
+            <a
+              class="button"
+              href="https://rpubs.com/AnuskaAcharya/1407359"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Read the regression report <span aria-hidden="true">↗</span>
+              <span class="visually-hidden">(opens in a new tab)</span>
+            </a>
+            <a class="button button-secondary" href="#findings">
+              Explore the findings <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+
+          <dl class="case-meta" aria-label="Project details">
+            <div>
+              <dt>Dataset</dt>
+              <dd>336,776 NYC departures</dd>
+            </div>
+            <div>
+              <dt>Coverage</dt>
+              <dd>EWR, JFK &amp; LGA · 2013</dd>
+            </div>
+            <div>
+              <dt>Toolkit</dt>
+              <dd>R · tidyverse · ggplot2</dd>
+            </div>
+            <div>
+              <dt>Methods</dt>
+              <dd>EDA · inference · regression</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <div class="case-layout">
+        <aside class="case-nav">
+          <p class="case-nav-label">On this page</p>
+          <nav aria-label="Case study sections">
+            <ol>
+              <li><a href="#overview">Overview</a></li>
+              <li><a href="#process">Analysis path</a></li>
+              <li><a href="#findings">Key findings</a></li>
+              <li><a href="#data-quality">Data care</a></li>
+              <li><a href="#limitations">Limitations</a></li>
+              <li><a href="#reports">Reports</a></li>
+            </ol>
+          </nav>
+        </aside>
+
+        <article class="case-content">
+          <section id="overview" class="case-section" aria-labelledby="overview-title">
+            <p class="case-section-index">01 · Overview</p>
+            <h2 id="overview-title">A familiar problem, examined one claim at a time.</h2>
+            <div class="case-prose">
+              <p>
+                Flight delays affect missed connections, passenger trust, and airline operations, but
+                a single average can hide when delays grow and whether flights recover time after takeoff.
+                I used the <code>nycflights13</code> dataset, which records every flight that departed New
+                York City’s three major airports in 2013, to investigate those patterns.
+              </p>
+              <p>
+                Rather than jump directly to a model, I treated the work as a sequence: understand the
+                distributions, test how stable the patterns are, inspect the documentation and missingness,
+                estimate uncertainty, then evaluate focused hypotheses and a regression model.
+              </p>
+            </div>
+
+            <dl class="case-stat-grid" aria-label="Analysis highlights">
+              <div>
+                <dt>336,776</dt>
+                <dd>flights in the full 2013 dataset</dd>
+              </div>
+              <div>
+                <dt>+26.0 min</dt>
+                <dd>evening versus morning mean departure delay</dd>
+              </div>
+              <div>
+                <dt>83.7%</dt>
+                <dd>arrival-delay variation explained by departure delay in a simple model</dd>
+              </div>
+            </dl>
+
+            <div class="insight-callout">
+              <p class="callout-label">Core question</p>
+              <p>
+                Which observed delay patterns are large enough to matter—and which only look convincing
+                because the dataset is large?
+              </p>
+            </div>
+          </section>
+
+          <section id="process" class="case-section" aria-labelledby="process-title">
+            <p class="case-section-index">02 · Analysis path</p>
+            <h2 id="process-title">The model was the last step, not the first.</h2>
+            <p class="case-lead">
+              Each report answered a narrower question and exposed a new decision to document before
+              moving forward.
+            </p>
+
+            <ol class="process-grid">
+              <li>
+                <p class="process-number">01</p>
+                <h3>Explore</h3>
+                <p>Mapped delay distributions, carrier volume, time-of-day patterns, and recovery after departure.</p>
+              </li>
+              <li>
+                <p class="process-number">02</p>
+                <h3>Question rarity</h3>
+                <p>Separated genuinely unusual events from low-frequency carrier and route groups.</p>
+              </li>
+              <li>
+                <p class="process-number">03</p>
+                <h3>Stress-test samples</h3>
+                <p>Compared repeated samples to see which patterns remained stable and which shifted for small groups.</p>
+              </li>
+              <li>
+                <p class="process-number">04</p>
+                <h3>Read the data</h3>
+                <p>Audited encoded time, negative delays, missing arrivals, structural gaps, and outliers.</p>
+              </li>
+              <li>
+                <p class="process-number">05</p>
+                <h3>Quantify uncertainty</h3>
+                <p>Built confidence intervals and checked whether derived variables created mechanical correlations.</p>
+              </li>
+              <li>
+                <p class="process-number">06</p>
+                <h3>Test &amp; model</h3>
+                <p>Used Welch’s t-test, a proportions test, ANOVA, and ordinary least squares regression.</p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="findings" class="case-section" aria-labelledby="findings-title">
+            <p class="case-section-index">03 · Key findings</p>
+            <h2 id="findings-title">Three views of how delay behaves.</h2>
+            <p class="case-lead">
+              Use the finding labels to compare timing, distance, and delay propagation. Every view pairs
+              statistical evidence with its practical meaning.
+            </p>
+
+            <div class="finding-explorer" data-finding-tabs>
+              <div class="finding-tabs" role="tablist" aria-label="Flight delay findings">
+                <button
+                  class="finding-tab"
+                  type="button"
+                  role="tab"
+                  id="tab-time"
+                  aria-controls="panel-time"
+                  aria-selected="true"
+                  tabindex="0"
+                  data-finding-tab="time"
+                >
+                  Time of day
+                </button>
+                <button
+                  class="finding-tab"
+                  type="button"
+                  role="tab"
+                  id="tab-distance"
+                  aria-controls="panel-distance"
+                  aria-selected="false"
+                  tabindex="-1"
+                  data-finding-tab="distance"
+                >
+                  Flight distance
+                </button>
+                <button
+                  class="finding-tab"
+                  type="button"
+                  role="tab"
+                  id="tab-propagation"
+                  aria-controls="panel-propagation"
+                  aria-selected="false"
+                  tabindex="-1"
+                  data-finding-tab="propagation"
+                >
+                  Delay propagation
+                </button>
+              </div>
+
+              <div class="finding-panels">
+                <section
+                  class="finding-panel"
+                  id="panel-time"
+                  role="tabpanel"
+                  aria-labelledby="tab-time"
+                  data-finding-panel="time"
+                >
+                  <div class="finding-copy">
+                    <p class="finding-number">Finding 01</p>
+                    <h3>Evening flights averaged 26 more minutes of departure delay.</h3>
+                    <p>
+                      Flights departing from 5:00–11:59 a.m. averaged 1.79 minutes of delay; those
+                      departing from 5:00–11:59 p.m. averaged 27.79 minutes. The difference exceeded the
+                      five-minute threshold defined in advance as practically meaningful.
+                    </p>
+                  </div>
+
+                  <figure class="chart-shell">
+                    <figcaption>Mean departure delay by time group, in minutes</figcaption>
+                    <svg
+                      class="case-chart"
+                      viewBox="0 0 760 360"
+                      role="img"
+                      aria-labelledby="delay-chart-title delay-chart-desc"
+                    >
+                      <title id="delay-chart-title">Morning and evening mean departure delay</title>
+                      <desc id="delay-chart-desc">
+                        Morning flights averaged 1.79 minutes of departure delay. Evening flights averaged
+                        27.79 minutes, a difference of 26 minutes.
+                      </desc>
+
+                      <g stroke="#d7d2c8" stroke-width="1">
+                        <line x1="140" y1="54" x2="140" y2="278"></line>
+                        <line x1="320" y1="54" x2="320" y2="278"></line>
+                        <line x1="500" y1="54" x2="500" y2="278"></line>
+                        <line x1="680" y1="54" x2="680" y2="278"></line>
+                      </g>
+                      <g fill="#5d655f" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">
+                        <text x="140" y="304" text-anchor="middle">0</text>
+                        <text x="320" y="304" text-anchor="middle">10</text>
+                        <text x="500" y="304" text-anchor="middle">20</text>
+                        <text x="680" y="304" text-anchor="middle">30 min</text>
+                      </g>
+                      <g fill="#1f2421" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15">
+                        <text x="120" y="123" text-anchor="end">Morning</text>
+                        <text x="120" y="221" text-anchor="end">Evening</text>
+                      </g>
+                      <rect x="140" y="91" width="32.2" height="48" rx="3" fill="#a8b1a6"></rect>
+                      <rect x="140" y="189" width="500.2" height="48" rx="3" fill="#78384f"></rect>
+                      <g fill="#1f2421" font-family="ui-monospace, SFMono-Regular, monospace" font-size="15" font-weight="700">
+                        <text x="184" y="122">1.79 min</text>
+                        <text x="652" y="220">27.79 min</text>
+                      </g>
+                      <text
+                        x="410"
+                        y="338"
+                        fill="#78384f"
+                        font-family="ui-sans-serif, system-ui, sans-serif"
+                        font-size="15"
+                        font-weight="700"
+                        text-anchor="middle"
+                      >
+                        Evening − morning = +26.0 minutes
+                      </text>
+                    </svg>
+                  </figure>
+
+                  <div class="insight-callout">
+                    <p class="callout-label">Statistical read</p>
+                    <p>
+                      Welch’s one-sided t-test: <i>t</i> = 142.09, <i>df</i> = 125,496,
+                      <i>p</i> &lt; 2.2 × 10<sup>−16</sup>. The 95% confidence interval placed the true
+                      mean difference at no less than 25.70 minutes.
+                    </p>
+                  </div>
+                </section>
+
+                <section
+                  class="finding-panel"
+                  id="panel-distance"
+                  role="tabpanel"
+                  aria-labelledby="tab-distance"
+                  data-finding-panel="distance"
+                >
+                  <div class="finding-copy">
+                    <p class="finding-number">Finding 02</p>
+                    <h3>Short flights were slightly more likely to arrive late.</h3>
+                    <p>
+                      The late-arrival rate was 39.2% for flights over 1,000 miles and 41.7% for flights
+                      at or below 1,000 miles—a difference of 2.5 percentage points.
+                    </p>
+                  </div>
+
+                  <figure class="chart-shell">
+                    <figcaption>Share of flights arriving late, by distance group</figcaption>
+                    <svg
+                      class="case-chart"
+                      viewBox="0 0 760 360"
+                      role="img"
+                      aria-labelledby="late-chart-title late-chart-desc"
+                    >
+                      <title id="late-chart-title">Late-arrival rate for long and short flights</title>
+                      <desc id="late-chart-desc">
+                        Flights over 1,000 miles had a 39.2 percent late-arrival rate. Flights of 1,000
+                        miles or less had a 41.7 percent late-arrival rate, 2.5 percentage points higher.
+                      </desc>
+
+                      <g stroke="#d7d2c8" stroke-width="1">
+                        <line x1="140" y1="54" x2="140" y2="278"></line>
+                        <line x1="248" y1="54" x2="248" y2="278"></line>
+                        <line x1="356" y1="54" x2="356" y2="278"></line>
+                        <line x1="464" y1="54" x2="464" y2="278"></line>
+                        <line x1="572" y1="54" x2="572" y2="278"></line>
+                        <line x1="680" y1="54" x2="680" y2="278"></line>
+                      </g>
+                      <g fill="#5d655f" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">
+                        <text x="140" y="304" text-anchor="middle">0</text>
+                        <text x="248" y="304" text-anchor="middle">10</text>
+                        <text x="356" y="304" text-anchor="middle">20</text>
+                        <text x="464" y="304" text-anchor="middle">30</text>
+                        <text x="572" y="304" text-anchor="middle">40</text>
+                        <text x="680" y="304" text-anchor="middle">50%</text>
+                      </g>
+                      <g fill="#1f2421" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15">
+                        <text x="120" y="123" text-anchor="end">Long</text>
+                        <text x="120" y="221" text-anchor="end">Short</text>
+                      </g>
+                      <rect x="140" y="91" width="423.4" height="48" rx="3" fill="#a8b1a6"></rect>
+                      <rect x="140" y="189" width="450.4" height="48" rx="3" fill="#78384f"></rect>
+                      <g fill="#1f2421" font-family="ui-monospace, SFMono-Regular, monospace" font-size="15" font-weight="700">
+                        <text x="575" y="122">39.2%</text>
+                        <text x="602" y="220">41.7%</text>
+                      </g>
+                      <text
+                        x="410"
+                        y="338"
+                        fill="#78384f"
+                        font-family="ui-sans-serif, system-ui, sans-serif"
+                        font-size="15"
+                        font-weight="700"
+                        text-anchor="middle"
+                      >
+                        Short − long = +2.5 percentage points
+                      </text>
+                    </svg>
+                  </figure>
+
+                  <div class="insight-callout">
+                    <p class="callout-label">Statistical read</p>
+                    <p>
+                      Two-sample proportions test: χ² = 209.23, <i>df</i> = 1,
+                      <i>p</i> &lt; 2.2 × 10<sup>−16</sup>. The difference was statistically clear but
+                      practically modest: the 95% interval for long minus short was −2.84 to −2.16 points.
+                    </p>
+                  </div>
+                </section>
+
+                <section
+                  class="finding-panel"
+                  id="panel-propagation"
+                  role="tabpanel"
+                  aria-labelledby="tab-propagation"
+                  data-finding-panel="propagation"
+                >
+                  <div class="finding-copy">
+                    <p class="finding-number">Finding 03</p>
+                    <h3>Departure delay explained most of the variation in arrival delay.</h3>
+                    <p>
+                      In 327,346 complete flight records, each additional departure-delay minute was
+                      associated with about 1.02 additional arrival-delay minutes. The simple model
+                      explained 83.7% of observed arrival-delay variation.
+                    </p>
+                  </div>
+
+                  <figure class="chart-shell">
+                    <figcaption>Fitted arrival delay across departure-delay values</figcaption>
+                    <svg
+                      class="case-chart"
+                      viewBox="0 0 760 430"
+                      role="img"
+                      aria-labelledby="regression-chart-title regression-chart-desc"
+                    >
+                      <title id="regression-chart-title">Fitted relationship between departure and arrival delay</title>
+                      <desc id="regression-chart-desc">
+                        The fitted equation is arrival delay equals negative 5.90 plus 1.019 times departure
+                        delay. The model R squared is 0.8369. The chart shows fitted values, not individual flights.
+                      </desc>
+
+                      <g stroke="#d7d2c8" stroke-width="1">
+                        <line x1="104" y1="50" x2="104" y2="340"></line>
+                        <line x1="197" y1="50" x2="197" y2="340"></line>
+                        <line x1="291" y1="50" x2="291" y2="340"></line>
+                        <line x1="384" y1="50" x2="384" y2="340"></line>
+                        <line x1="477" y1="50" x2="477" y2="340"></line>
+                        <line x1="571" y1="50" x2="571" y2="340"></line>
+                        <line x1="664" y1="50" x2="664" y2="340"></line>
+                        <line x1="104" y1="299" x2="664" y2="299"></line>
+                        <line x1="104" y1="216" x2="664" y2="216"></line>
+                        <line x1="104" y1="133" x2="664" y2="133"></line>
+                        <line x1="104" y1="50" x2="664" y2="50"></line>
+                      </g>
+                      <line
+                        x1="104"
+                        y1="299"
+                        x2="664"
+                        y2="50"
+                        stroke="#a8b1a6"
+                        stroke-width="2"
+                        stroke-dasharray="7 7"
+                      ></line>
+                      <line
+                        x1="104"
+                        y1="323"
+                        x2="664"
+                        y2="70"
+                        stroke="#78384f"
+                        stroke-width="6"
+                        stroke-linecap="round"
+                      ></line>
+                      <g fill="#5d655f" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">
+                        <text x="104" y="364" text-anchor="middle">0</text>
+                        <text x="197" y="364" text-anchor="middle">10</text>
+                        <text x="291" y="364" text-anchor="middle">20</text>
+                        <text x="384" y="364" text-anchor="middle">30</text>
+                        <text x="477" y="364" text-anchor="middle">40</text>
+                        <text x="571" y="364" text-anchor="middle">50</text>
+                        <text x="664" y="364" text-anchor="middle">60</text>
+                        <text x="84" y="304" text-anchor="end">0</text>
+                        <text x="84" y="221" text-anchor="end">20</text>
+                        <text x="84" y="138" text-anchor="end">40</text>
+                        <text x="84" y="55" text-anchor="end">60</text>
+                        <text x="384" y="401" text-anchor="middle">Departure delay (minutes)</text>
+                        <text transform="translate(27 195) rotate(-90)" text-anchor="middle">Arrival delay (minutes)</text>
+                      </g>
+                      <g fill="#1f2421" font-family="ui-sans-serif, system-ui, sans-serif">
+                        <text x="430" y="92" font-size="15" font-weight="700">Fitted model</text>
+                        <text x="430" y="115" font-family="ui-monospace, SFMono-Regular, monospace" font-size="14">
+                          arrival = −5.90 + 1.019 × departure
+                        </text>
+                        <text x="430" y="141" font-family="ui-monospace, SFMono-Regular, monospace" font-size="14">
+                          R² = 0.8369
+                        </text>
+                        <text x="430" y="165" fill="#5d655f" font-size="13">Dashed line: one-to-one reference</text>
+                      </g>
+                    </svg>
+                    <p class="chart-note">The line displays fitted values from the model, not individual flight observations.</p>
+                  </figure>
+
+                  <div class="insight-callout">
+                    <p class="callout-label">Statistical read</p>
+                    <p>
+                      Slope = 1.0191, <i>p</i> &lt; 2 × 10<sup>−16</sup>; intercept = −5.8995 minutes;
+                      residual standard error = 18.03 minutes. The strong association does not, by itself,
+                      establish that changing departure delay will cause the same change at arrival.
+                    </p>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </section>
+
+          <section id="data-quality" class="case-section" aria-labelledby="quality-title">
+            <p class="case-section-index">04 · Data care</p>
+            <h2 id="quality-title">The definition of “delay” changes the story.</h2>
+            <p class="case-lead">
+              Before drawing conclusions, I checked what the fields represented and what disappeared
+              when incomplete records were removed.
+            </p>
+
+            <ol class="process-grid data-care-grid">
+              <li>
+                <p class="process-number">Encoding</p>
+                <h3>12.6 vs 34.9 minutes</h3>
+                <p>
+                  Mean departure delay was 12.6 minutes when early departures were retained as negative
+                  values, and 34.9 minutes after excluding them. Both are valid summaries of different questions.
+                </p>
+              </li>
+              <li>
+                <p class="process-number">Missingness</p>
+                <h3>9,430 paired gaps</h3>
+                <p>
+                  Arrival delay and air time each had 9,430 missing values. Their matching pattern is
+                  consistent with cancelled or diverted flights, not simple random entry errors.
+                </p>
+              </li>
+              <li>
+                <p class="process-number">Outliers</p>
+                <h3>More than 35 minutes late</h3>
+                <p>
+                  The 1.5 × IQR rule flags departure delays above 35 minutes, but the right-skewed tail
+                  represents real disruptions that should not be removed automatically.
+                </p>
+              </li>
+            </ol>
+
+            <div class="insight-callout">
+              <p class="callout-label">Interpretive decision</p>
+              <p>
+                Complete-case results describe flights with recorded arrival outcomes. They should not be
+                presented as a complete measure of disruption, because cancelled or diverted flights may be
+                absent from the modeled subset.
+              </p>
+            </div>
+          </section>
+
+          <section id="limitations" class="case-section limitations" aria-labelledby="limitations-title">
+            <p class="case-section-index">05 · Limitations</p>
+            <h2 id="limitations-title">What these results can—and cannot—say.</h2>
+
+            <div class="limitation-grid">
+              <article>
+                <h3>Association, not causation</h3>
+                <p>
+                  These are observational records. The regression describes a strong relationship; it does
+                  not prove that a one-minute intervention at departure causes exactly 1.019 minutes at arrival.
+                </p>
+              </article>
+              <article>
+                <h3>Unadjusted comparisons</h3>
+                <p>
+                  Carrier, timing, and distance results do not control for route, airport, weather, aircraft,
+                  or schedule mix. Those factors may explain part of the observed differences.
+                </p>
+              </article>
+              <article>
+                <h3>Time-group definition</h3>
+                <p>
+                  The morning/evening test uses actual departure time. A long delay can move a flight into a
+                  later group, so scheduled departure hour would be a useful sensitivity check.
+                </p>
+              </article>
+              <article>
+                <h3>Large-sample significance</h3>
+                <p>
+                  With hundreds of thousands of records, small effects can yield tiny p-values. That is why
+                  the analysis reports effect sizes and practical thresholds alongside significance tests.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section id="reports" class="case-section" aria-labelledby="reports-title">
+            <p class="case-section-index">06 · Reproducible record</p>
+            <h2 id="reports-title">Follow the analysis from first look to final model.</h2>
+            <p class="case-lead">
+              Each notebook preserves the R code, output, visualizations, and interpretation for one stage
+              of the project.
+            </p>
+
+            <ol class="report-list">
+              <li>
+                <a href="https://rpubs.com/AnuskaAcharya/datadive" target="_blank" rel="noreferrer">
+                  <span>Exploratory summary</span><span aria-hidden="true">↗</span>
+                  <span class="visually-hidden">(opens in a new tab)</span>
+                </a>
+                <p>Distributions, carrier counts, time-of-day patterns, and questions for further study.</p>
+              </li>
+              <li>
+                <a href="https://rpubs.com/AnuskaAcharya/1392733" target="_blank" rel="noreferrer">
+                  <span>Probability and rare groups</span><span aria-hidden="true">↗</span>
+                  <span class="visually-hidden">(opens in a new tab)</span>
+                </a>
+                <p>Carrier, time, distance, and origin frequency interpreted through random selection.</p>
+              </li>
+              <li>
+                <a href="https://rpubs.com/AnuskaAcharya/1395470" target="_blank" rel="noreferrer">
+                  <span>Sampling variability and anomalies</span><span aria-hidden="true">↗</span>
+                  <span class="visually-hidden">(opens in a new tab)</span>
+                </a>
+                <p>Repeated samples reveal stable distributions and less-stable estimates for small carriers.</p>
+              </li>
+              <li>
+                <a href="https://rpubs.com/AnuskaAcharya/1397683" target="_blank" rel="noreferrer">
+                  <span>Documentation and data understanding</span><span aria-hidden="true">↗</span>
+                  <span class="visually-hidden">(opens in a new tab)</span>
+                </a>
+                <p>Encoding, missingness, structural gaps, and outliers are audited before modeling.</p>
+              </li>
+              <li>
+                <a href="https://rpubs.com/AnuskaAcharya/1399763" target="_blank" rel="noreferrer">
+                  <span>Confidence intervals</span><span aria-hidden="true">↗</span>
+                  <span class="visually-hidden">(opens in a new tab)</span>
+                </a>
+                <p>Uncertainty estimates and a caution about mechanically constructed correlations.</p>
+              </li>
+              <li>
+                <a href="https://rpubs.com/AnuskaAcharya/1404172" target="_blank" rel="noreferrer">
+                  <span>Hypothesis testing</span><span aria-hidden="true">↗</span>
+                  <span class="visually-hidden">(opens in a new tab)</span>
+                </a>
+                <p>Morning/evening delay and long/short late-arrival comparisons with effect sizes.</p>
+              </li>
+              <li>
+                <a href="https://rpubs.com/AnuskaAcharya/1407359" target="_blank" rel="noreferrer">
+                  <span>ANOVA and regression modeling</span><span aria-hidden="true">↗</span>
+                  <span class="visually-hidden">(opens in a new tab)</span>
+                </a>
+                <p>Carrier-level differences and the fitted relationship between departure and arrival delay.</p>
+              </li>
+            </ol>
+
+            <p class="source-note">
+              Dataset documentation:
+              <a href="https://nycflights13.tidyverse.org/" target="_blank" rel="noreferrer">
+                nycflights13 <span aria-hidden="true">↗</span>
+                <span class="visually-hidden">(opens in a new tab)</span>
+              </a>
+            </p>
+          </section>
+
+          <a class="next-case" href="himalayan-expedition.html">
+            <span>
+              <span class="next-case-label">Next case study</span>
+              Himalayan Expedition Risk Analysis
+            </span>
+            <span class="next-case-arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>Research with context. Data with purpose.</p>
+      <p>© <span data-current-year>2026</span> Anuska Acharya</p>
+      <a href="#main-content">Back to top <span aria-hidden="true">↑</span></a>
+    </footer>
+  </body>
+</html>
