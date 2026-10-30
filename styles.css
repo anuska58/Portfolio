@@ -3332,7 +3332,7 @@ body {
 
 .ux-task-stimulus figcaption,
 .ux-style-figure figcaption,
-.ux-map-link > span,
+.ux-map-figure figcaption,
 .ux-persona-gallery figcaption,
 .ux-sus-image figcaption {
   padding-top: 9px;
@@ -3744,9 +3744,12 @@ body {
 }
 
 .ux-affinity-block {
-  display: block;
+  display: grid;
   padding: 27px;
   margin-top: 22px;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: center;
+  gap: 30px;
   border: 1px solid var(--rule);
   background: var(--ux-surface);
 }
@@ -3757,46 +3760,37 @@ body {
 }
 
 .ux-affinity-block p {
-  max-width: 760px;
+  max-width: 680px;
   margin: 0;
   color: var(--muted);
   font-size: 0.78rem;
   line-height: 1.7;
 }
 
-.ux-map-gallery {
-  display: grid;
-  margin-top: 22px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+.ux-map-figure {
+  width: 100%;
+  max-width: 300px;
+  margin: 0;
 }
 
-.ux-map-link {
-  display: grid;
+.ux-map-figure a {
+  display: block;
   overflow: hidden;
-  grid-template-rows: 190px auto;
   border: 1px solid var(--rule);
   background: #fff;
-  text-decoration: none;
 }
 
-.ux-map-link img {
+.ux-map-figure img {
   display: block;
   width: 100%;
-  height: 190px;
-  object-fit: cover;
-  object-position: center;
-  background: white;
+  height: auto;
 }
 
-.ux-map-link > span {
-  display: flex;
-  padding: 10px 13px;
-  align-items: center;
-  justify-content: space-between;
-  color: var(--case-accent);
-  font-size: 0.68rem;
-  font-weight: 650;
+.ux-map-figure figcaption {
+  padding-top: 8px;
+  color: var(--muted);
+  font-size: 0.63rem;
+  line-height: 1.5;
 }
 
 .ux-personas-section {
@@ -4094,9 +4088,8 @@ body {
   .ux-method-card:last-child { grid-column: 1 / -1; }
   .ux-method-who { min-height: 0; }
   .ux-role-strip { grid-template-columns: 1fr; gap: 14px; }
-  .ux-map-gallery { grid-template-columns: 1fr 1fr; gap: 9px; }
-  .ux-map-link { grid-template-rows: 140px auto; }
-  .ux-map-link img { height: 140px; }
+  .ux-affinity-block { grid-template-columns: minmax(0, 1fr) 240px; gap: 20px; }
+  .ux-map-figure { max-width: 240px; }
   .ux-results-grid { gap: 18px; }
   .ux-takeaway { grid-template-columns: 1fr; gap: 10px; }
 }
@@ -4111,9 +4104,8 @@ body {
   .ux-task-cards,
   .ux-persona-summaries,
   .ux-persona-gallery { grid-template-columns: 1fr; }
-  .ux-map-gallery { grid-template-columns: 1fr; }
-  .ux-map-link { grid-template-rows: 180px auto; }
-  .ux-map-link img { height: 180px; }
+  .ux-affinity-block { grid-template-columns: 1fr; }
+  .ux-map-figure { justify-self: center; }
   .ux-method-card:last-child { grid-column: auto; }
   .ux-role-strip ul { grid-template-columns: 1fr; }
   .ux-section-heading-row,
