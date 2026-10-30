@@ -3332,7 +3332,7 @@ body {
 
 .ux-task-stimulus figcaption,
 .ux-style-figure figcaption,
-.ux-map-figure figcaption,
+.ux-map-link > span,
 .ux-persona-gallery figcaption,
 .ux-sus-image figcaption {
   padding-top: 9px;
@@ -3598,8 +3598,11 @@ body {
 }
 
 .ux-task-stimulus {
+  width: 100%;
+  max-width: 420px;
   padding: 12px;
   margin: 0;
+  justify-self: end;
   border: 1px solid var(--rule);
   background: var(--ux-surface);
 }
@@ -3619,7 +3622,7 @@ body {
 
 .ux-task-cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 15px;
 }
 
@@ -3628,6 +3631,15 @@ body {
   padding: 23px;
   border: 1px solid var(--rule);
   background: var(--ux-surface);
+}
+
+.ux-task-cards .ux-task-card-restyle {
+  display: grid;
+  min-height: 0;
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.55fr);
+  align-items: center;
+  gap: 28px;
 }
 
 .ux-task-cards h3 {
@@ -3673,13 +3685,16 @@ body {
 }
 
 .ux-style-figure {
+  width: 100%;
+  max-width: 300px;
   margin: 0;
+  justify-self: end;
 }
 
 .ux-style-figure img {
   display: block;
   width: 100%;
-  background: white;
+  height: auto;
   border: 1px solid var(--rule);
 }
 
@@ -3728,12 +3743,9 @@ body {
 }
 
 .ux-affinity-block {
-  display: grid;
+  display: block;
   padding: 27px;
   margin-top: 22px;
-  grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.25fr);
-  align-items: center;
-  gap: 28px;
   border: 1px solid var(--rule);
   background: var(--ux-surface);
 }
@@ -3744,24 +3756,46 @@ body {
 }
 
 .ux-affinity-block p {
+  max-width: 760px;
   margin: 0;
   color: var(--muted);
   font-size: 0.78rem;
   line-height: 1.7;
 }
 
-.ux-map-figure {
-  margin: 0;
+.ux-map-gallery {
+  display: grid;
+  margin-top: 22px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
 }
 
-.ux-map-figure img {
+.ux-map-link {
+  display: grid;
+  overflow: hidden;
+  grid-template-rows: 190px auto;
+  border: 1px solid var(--rule);
+  background: #fff;
+  text-decoration: none;
+}
+
+.ux-map-link img {
   display: block;
   width: 100%;
-  max-height: 390px;
-  object-fit: contain;
-  object-position: center top;
+  height: 190px;
+  object-fit: cover;
+  object-position: center;
   background: white;
-  border: 1px solid var(--rule);
+}
+
+.ux-map-link > span {
+  display: flex;
+  padding: 10px 13px;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--case-accent);
+  font-size: 0.68rem;
+  font-weight: 650;
 }
 
 .ux-personas-section {
@@ -3790,31 +3824,34 @@ body {
 
 .ux-persona-gallery {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 17px;
 }
 
 .ux-persona-gallery figure {
   display: grid;
-  grid-template-rows: 350px auto;
-  padding: 12px;
+  grid-template-rows: auto auto;
+  overflow: hidden;
+  padding: 0;
   margin: 0;
   border: 1px solid var(--rule);
   background: var(--ux-surface);
 }
 
 .ux-persona-gallery a {
-  display: grid;
+  display: block;
+  overflow: hidden;
   background: #fff;
-  place-items: center;
 }
 
 .ux-persona-gallery img {
   display: block;
-  width: auto;
-  max-width: 100%;
-  max-height: 350px;
+  width: 100%;
   height: auto;
+}
+
+.ux-persona-gallery figcaption {
+  padding: 11px 14px;
 }
 
 .ux-results-band {
@@ -4051,12 +4088,14 @@ body {
   .ux-interview-grid,
   .ux-results-grid,
   .ux-reflection-grid { grid-template-columns: 1fr; }
+  .ux-section-heading-row { grid-template-columns: 1.1fr 0.9fr; gap: 22px; }
   .ux-method-cards { grid-template-columns: 1fr 1fr; }
   .ux-method-card:last-child { grid-column: 1 / -1; }
   .ux-method-who { min-height: 0; }
   .ux-role-strip { grid-template-columns: 1fr; gap: 14px; }
-  .ux-affinity-block { grid-template-columns: 1fr; }
-  .ux-map-figure img { max-height: 390px; }
+  .ux-map-gallery { grid-template-columns: 1fr 1fr; gap: 9px; }
+  .ux-map-link { grid-template-rows: 140px auto; }
+  .ux-map-link img { height: 140px; }
   .ux-results-grid { gap: 18px; }
   .ux-takeaway { grid-template-columns: 1fr; gap: 10px; }
 }
@@ -4071,18 +4110,22 @@ body {
   .ux-task-cards,
   .ux-persona-summaries,
   .ux-persona-gallery { grid-template-columns: 1fr; }
+  .ux-map-gallery { grid-template-columns: 1fr; }
+  .ux-map-link { grid-template-rows: 180px auto; }
+  .ux-map-link img { height: 180px; }
   .ux-method-card:last-child { grid-column: auto; }
   .ux-role-strip ul { grid-template-columns: 1fr; }
   .ux-section-heading-row,
   .ux-task-support { grid-template-columns: 1fr; gap: 16px; }
   .ux-task-cards article { min-height: 0; }
+  .ux-task-cards .ux-task-card-restyle { grid-template-columns: 1fr; gap: 15px; }
+  .ux-task-card-restyle .ux-style-figure { justify-self: start; }
   .ux-style-figure { width: min(100%, 380px); }
   .ux-affinity-block,
   .ux-interview-card,
   .ux-results-table,
   .ux-reflection-grid article { padding: 20px; }
-  .ux-persona-gallery figure { grid-template-rows: 310px auto; padding: 8px; }
-  .ux-persona-gallery img { max-height: 310px; }
+  .ux-persona-gallery { grid-template-columns: 1fr; }
   .ux-table { min-width: 520px; }
   .ux-sus-summary { padding: 21px 18px; }
   .ux-sus-summary dl div { flex-direction: column; gap: 4px; }
