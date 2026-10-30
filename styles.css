@@ -3424,7 +3424,7 @@ body {
 .ux-results-table > p,
 .ux-reflection-grid p {
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: 1rem;
   line-height: 1.75;
 }
 
@@ -3458,8 +3458,8 @@ body {
 .ux-question-panel article p,
 .ux-question-panel > p {
   margin: 0;
-  font-size: 0.76rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.65;
 }
 
 .ux-question-panel > p {
@@ -3532,7 +3532,7 @@ body {
 .ux-method-card > p:last-child {
   margin: 0;
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   line-height: 1.65;
 }
 
@@ -3562,7 +3562,7 @@ body {
   position: relative;
   padding-left: 15px;
   color: var(--muted);
-  font-size: 0.73rem;
+  font-size: 0.9rem;
   line-height: 1.6;
 }
 
@@ -3593,7 +3593,7 @@ body {
 
 .ux-section-heading-row p {
   color: var(--muted);
-  font-size: 0.84rem;
+  font-size: 1rem;
   line-height: 1.7;
 }
 
@@ -3652,7 +3652,7 @@ body {
 .ux-task-cards p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.95rem;
   line-height: 1.65;
 }
 
@@ -3680,7 +3680,7 @@ body {
 .ux-record-details p {
   max-width: 710px;
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.9rem;
   line-height: 1.7;
 }
 
@@ -3760,7 +3760,7 @@ body {
   max-width: 680px;
   margin: 0;
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 1rem;
   line-height: 1.7;
 }
 
@@ -3827,7 +3827,7 @@ body {
   margin: 0;
   border-top: 1px solid var(--rule);
   color: var(--muted);
-  font-size: 0.76rem;
+  font-size: 0.95rem;
   line-height: 1.6;
 }
 
@@ -3891,7 +3891,7 @@ body {
 }
 
 .ux-results-table > p {
-  font-size: 0.76rem;
+  font-size: 1rem;
 }
 
 .ux-table-wrap {
@@ -3982,7 +3982,7 @@ body {
 
 .ux-sus-summary > p:not(:first-child) {
   color: rgba(251, 250, 246, 0.76);
-  font-size: 0.76rem;
+  font-size: 0.9rem;
   line-height: 1.6;
 }
 
@@ -4038,7 +4038,7 @@ body {
   max-width: 740px;
   margin: 0;
   color: var(--muted);
-  font-size: 0.84rem;
+  font-size: 1rem;
   line-height: 1.7;
 }
 
