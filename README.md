@@ -18,9 +18,9 @@ A seven-part statistical analysis of 2013 New York City flights, moving from exp
 
 [View the case study](https://anuska58.github.io/Portfolio/projects/flight-delay-analysis.html)
 
-### ChatGPT Image Generation UX Research
+### ChatGPT Image Generation and Editing
 
-A team study of how college students use ChatGPT to generate and edit images, combining interviews, think-aloud usability testing, and SUS analysis.
+A team study using interviews, think-aloud testing, and the System Usability Scale.
 
 [View the case study](https://anuska58.github.io/Portfolio/projects/chatgpt-image-ux-research.html)
 
@@ -52,7 +52,9 @@ Then visit `http://localhost:8000`.
 ├── styles.css
 ├── script.js
 ├── assets/
-│   └── favicon.svg
+│   ├── favicon.svg
+│   └── chatgpt-image-ux/
+│       └── study figures from the UX research PDF
 └── projects/
     ├── himalayan-expedition.html
     ├── flight-delay-analysis.html
