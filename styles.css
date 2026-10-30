@@ -3637,7 +3637,7 @@ body {
   display: grid;
   min-height: 0;
   grid-column: 1 / -1;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.55fr);
+  grid-template-columns: minmax(0, 1fr) 260px;
   align-items: center;
   gap: 28px;
 }
@@ -3686,14 +3686,15 @@ body {
 
 .ux-style-figure {
   width: 100%;
-  max-width: 300px;
+  max-width: 260px;
   margin: 0;
   justify-self: end;
 }
 
-.ux-style-figure img {
+.ux-task-card-restyle .ux-style-figure img {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: auto;
   border: 1px solid var(--rule);
 }
