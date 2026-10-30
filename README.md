@@ -18,6 +18,12 @@ A seven-part statistical analysis of 2013 New York City flights, moving from exp
 
 [View the case study](https://anuska58.github.io/Portfolio/projects/flight-delay-analysis.html)
 
+### ChatGPT Image Generation UX Research
+
+A team study of how college students use ChatGPT to generate and edit images, combining interviews, think-aloud usability testing, and SUS analysis.
+
+[View the case study](https://anuska58.github.io/Portfolio/projects/chatgpt-image-ux-research.html)
+
 ## Built with
 
 - Semantic HTML
@@ -49,7 +55,8 @@ Then visit `http://localhost:8000`.
 │   └── favicon.svg
 └── projects/
     ├── himalayan-expedition.html
-    └── flight-delay-analysis.html
+    ├── flight-delay-analysis.html
+    └── chatgpt-image-ux-research.html
 ```
 
 The homepage keeps completed work concise, while each project page contains the full analysis, findings, methods, and limitations. Ongoing research is clearly labeled and does not publish participant data or unfinished findings.
