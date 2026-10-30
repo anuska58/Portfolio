@@ -3805,6 +3805,12 @@ body {
   line-height: 1.5;
 }
 
+.ux-affinity-fragments figure:last-child {
+  width: min(100%, 760px);
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
 .ux-personas-section {
   padding-bottom: 95px;
 }
