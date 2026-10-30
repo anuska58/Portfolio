@@ -3296,10 +3296,8 @@ body {
 }
 
 .ux-web-hero-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(310px, 0.9fr);
-  align-items: center;
-  gap: clamp(36px, 6vw, 76px);
+  max-width: 960px;
+  margin-inline: auto;
 }
 
 .ux-web-hero-copy .case-back-link {
@@ -3317,7 +3315,7 @@ body {
 }
 
 .ux-web-hero h1 {
-  max-width: 690px;
+  max-width: 900px;
   margin-bottom: 23px;
   font-size: clamp(2.7rem, 5.5vw, 5rem);
   letter-spacing: -0.06em;
@@ -3332,21 +3330,7 @@ body {
   line-height: 1.65;
 }
 
-.ux-hero-image {
-  padding: 15px;
-  margin: 0;
-  border: 1px solid var(--rule);
-  background: var(--ux-surface);
-  box-shadow: 0 16px 40px rgba(21, 29, 26, 0.07);
-}
-
-.ux-hero-image img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.ux-hero-image figcaption,
+.ux-task-stimulus figcaption,
 .ux-style-figure figcaption,
 .ux-map-figure figcaption,
 .ux-persona-gallery figcaption,
@@ -3613,6 +3597,19 @@ body {
   line-height: 1.7;
 }
 
+.ux-task-stimulus {
+  padding: 12px;
+  margin: 0;
+  border: 1px solid var(--rule);
+  background: var(--ux-surface);
+}
+
+.ux-task-stimulus img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .ux-scenario-text {
   padding: 20px 22px;
   margin: 0;
@@ -3760,7 +3757,7 @@ body {
 .ux-map-figure img {
   display: block;
   width: 100%;
-  max-height: 620px;
+  max-height: 390px;
   object-fit: contain;
   object-position: center top;
   background: white;
@@ -3798,15 +3795,25 @@ body {
 }
 
 .ux-persona-gallery figure {
+  display: grid;
+  grid-template-rows: 350px auto;
   padding: 12px;
   margin: 0;
   border: 1px solid var(--rule);
   background: var(--ux-surface);
 }
 
+.ux-persona-gallery a {
+  display: grid;
+  background: #fff;
+  place-items: center;
+}
+
 .ux-persona-gallery img {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+  max-height: 350px;
   height: auto;
 }
 
@@ -4019,7 +4026,6 @@ body {
 }
 
 @media (max-width: 940px) {
-  .ux-web-hero-inner { gap: 32px; }
   .ux-system-section { grid-template-columns: 1fr 0.85fr; gap: 32px; }
   .ux-role-strip { grid-template-columns: 115px 1fr; }
   .ux-results-grid { grid-template-columns: 1fr 0.9fr; gap: 14px; }
@@ -4033,8 +4039,7 @@ body {
   .ux-web-section { width: calc(100% - 36px); }
 
   .ux-web-hero { padding-top: 52px; }
-  .ux-web-hero-inner { grid-template-columns: 1fr; }
-  .ux-hero-image { max-width: 560px; }
+  .ux-web-hero-inner { max-width: none; }
   .ux-web-facts { margin-top: 32px; grid-template-columns: 1fr 1fr; }
   .ux-web-nav { top: 66px; }
   .ux-web-section,
@@ -4051,7 +4056,7 @@ body {
   .ux-method-who { min-height: 0; }
   .ux-role-strip { grid-template-columns: 1fr; gap: 14px; }
   .ux-affinity-block { grid-template-columns: 1fr; }
-  .ux-map-figure img { max-height: 680px; }
+  .ux-map-figure img { max-height: 390px; }
   .ux-results-grid { gap: 18px; }
   .ux-takeaway { grid-template-columns: 1fr; gap: 10px; }
 }
@@ -4076,7 +4081,8 @@ body {
   .ux-interview-card,
   .ux-results-table,
   .ux-reflection-grid article { padding: 20px; }
-  .ux-persona-gallery figure { padding: 8px; }
+  .ux-persona-gallery figure { grid-template-rows: 310px auto; padding: 8px; }
+  .ux-persona-gallery img { max-height: 310px; }
   .ux-table { min-width: 520px; }
   .ux-sus-summary { padding: 21px 18px; }
   .ux-sus-summary dl div { flex-direction: column; gap: 4px; }
