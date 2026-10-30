@@ -3332,7 +3332,7 @@ body {
 
 .ux-task-stimulus figcaption,
 .ux-style-figure figcaption,
-.ux-map-figure figcaption,
+.ux-affinity-fragments figcaption,
 .ux-persona-gallery figcaption,
 .ux-sus-image figcaption {
   padding-top: 9px;
@@ -3744,12 +3744,9 @@ body {
 }
 
 .ux-affinity-block {
-  display: grid;
+  display: block;
   padding: 27px;
   margin-top: 22px;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  align-items: center;
-  gap: 30px;
   border: 1px solid var(--rule);
   background: var(--ux-surface);
 }
@@ -3767,29 +3764,39 @@ body {
   line-height: 1.7;
 }
 
-.ux-map-figure {
-  width: 100%;
-  max-width: 300px;
-  margin: 0;
+.ux-affinity-fragments {
+  display: grid;
+  margin-top: 22px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 12px;
 }
 
-.ux-map-figure a {
-  display: block;
-  overflow: hidden;
+.ux-affinity-fragments figure {
+  display: grid;
+  padding: 10px;
+  margin: 0;
   border: 1px solid var(--rule);
   background: #fff;
 }
 
-.ux-map-figure img {
+.ux-affinity-fragments a {
+  display: block;
+  overflow: hidden;
+  background: white;
+}
+
+.ux-affinity-fragments img {
   display: block;
   width: 100%;
   height: auto;
 }
 
-.ux-map-figure figcaption {
+.ux-affinity-fragments figcaption {
   padding-top: 8px;
   color: var(--muted);
   font-size: 0.63rem;
+  font-weight: 600;
   line-height: 1.5;
 }
 
@@ -4088,8 +4095,7 @@ body {
   .ux-method-card:last-child { grid-column: 1 / -1; }
   .ux-method-who { min-height: 0; }
   .ux-role-strip { grid-template-columns: 1fr; gap: 14px; }
-  .ux-affinity-block { grid-template-columns: minmax(0, 1fr) 240px; gap: 20px; }
-  .ux-map-figure { max-width: 240px; }
+  .ux-affinity-fragments { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ux-results-grid { gap: 18px; }
   .ux-takeaway { grid-template-columns: 1fr; gap: 10px; }
 }
@@ -4104,8 +4110,7 @@ body {
   .ux-task-cards,
   .ux-persona-summaries,
   .ux-persona-gallery { grid-template-columns: 1fr; }
-  .ux-affinity-block { grid-template-columns: 1fr; }
-  .ux-map-figure { justify-self: center; }
+  .ux-affinity-fragments { grid-template-columns: 1fr; }
   .ux-method-card:last-child { grid-column: auto; }
   .ux-role-strip ul { grid-template-columns: 1fr; }
   .ux-section-heading-row,
