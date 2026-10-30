@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="A team study of how college students use ChatGPT image generation and editing, using interviews, think-aloud testing, and the System Usability Scale."
+      content="A team study of how college students use ChatGPT image generation and editing, using interviews, a think-aloud test and the System Usability Scale."
     >
     <meta name="theme-color" content="#f3f0e9">
     <meta property="og:title" content="How college students use ChatGPT to make images | Anuska Acharya">
@@ -28,13 +28,7 @@
           <span class="wordmark-name">Anuska Acharya</span>
           <span class="wordmark-role">Data science · UX research</span>
         </a>
-        <button
-          class="nav-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="site-navigation"
-          data-nav-toggle
-        >
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" data-nav-toggle>
           <span class="nav-toggle-label">Menu</span>
           <span class="nav-toggle-icon" aria-hidden="true"></span>
         </button>
@@ -51,24 +45,31 @@
       </div>
     </header>
 
-    <main id="main-content" class="ux-document">
-      <header class="ux-document-header">
-        <a class="case-back-link" href="../index.html#work"><span aria-hidden="true">←</span> Back to selected work</a>
-        <p class="ux-document-type">UX research</p>
-        <h1>How college students use ChatGPT to make images, and where it stops working for them</h1>
-        <p class="ux-document-intro">A team study of ChatGPT image generation and editing, using interviews, a think-aloud test and the System Usability Scale.</p>
-
-        <dl class="ux-document-facts">
-          <div><dt>My role</dt><dd>UX researcher: interviewer, coder, SUS analysis</dd></div>
+    <main id="main-content" class="ux-study">
+      <section class="ux-web-hero" aria-labelledby="case-title">
+        <div class="ux-web-hero-inner">
+          <div class="ux-web-hero-copy">
+            <a class="case-back-link" href="../index.html#work"><span aria-hidden="true">←</span> Back to selected work</a>
+            <p class="ux-document-type">UX research</p>
+            <h1 id="case-title">How college students use ChatGPT to make images, and where it stops working for them</h1>
+            <p class="ux-web-intro">A team study of ChatGPT image generation and editing, using interviews, a think-aloud test and the System Usability Scale.</p>
+          </div>
+          <figure class="ux-hero-image">
+            <img src="../assets/chatgpt-image-ux/image-a.jpg" alt="Image A: a girl wearing a VR headset and holding controllers beside a boy who is waving.">
+            <figcaption>Image A, the starting image for all three tasks.</figcaption>
+          </figure>
+        </div>
+        <dl class="ux-web-facts">
+          <div><dt>My role</dt><dd>Interviewer, coder, SUS analysis</dd></div>
           <div><dt>Team</dt><dd>Ying Zhong, Raffa Mirella Gano, Titilope Kate Afolabi</dd></div>
-          <div><dt>Course</dt><dd>INFO-H543 Interaction Design Methods, Indiana University</dd></div>
+          <div><dt>Course</dt><dd>INFO-H543 · Indiana University</dd></div>
           <div><dt>Timeline</dt><dd>August–October 2026</dd></div>
-          <div><dt>Methods</dt><dd>Semi-structured interviews, affinity mapping, think-aloud test, SUS</dd></div>
-          <div><dt>Tools</dt><dd>Figma board, Qualtrics, Excel, audio recordings and notes</dd></div>
+          <div><dt>Methods</dt><dd>Interviews, affinity mapping, think-aloud, SUS</dd></div>
+          <div><dt>Tools</dt><dd>Figma board, Qualtrics, Excel, recordings and notes</dd></div>
         </dl>
-      </header>
+      </section>
 
-      <nav class="ux-document-nav" aria-label="On this page">
+      <nav class="ux-web-nav" aria-label="On this page">
         <a href="#system">Study</a>
         <a href="#methods">Methods</a>
         <a href="#interviews">Interviews</a>
@@ -77,175 +78,198 @@
         <a href="#reflection">Reflection</a>
       </nav>
 
-      <article class="ux-document-content">
-        <section id="system" class="ux-document-section">
+      <section id="system" class="ux-web-section ux-system-section">
+        <div class="ux-system-copy">
           <h2>The system and why we picked it</h2>
           <p>We started with ChatGPT as the product and asked how people actually use it. Our early notes were broad: how people consume the product, how college students use it for work and for personal things, how they use it to help with assignments, and one specific idea, how people upload an image. Image generation kept coming up as the part we knew least about, so we narrowed the study to that.</p>
           <p>ChatGPT can create or edit images from a text prompt. You can upload a photo, a sketch or a document and ask for a new object, a different style, a cleaner diagram, or a file type like SVG. If the result is off, you keep chatting until it is better, or you rate it with a thumbs up or down.</p>
           <p>Most students we talked to already use ChatGPT daily for classes, so image generation was often one more thing to try in a tool that was already open. One said it’s convenient because “it’s just there.” We wanted to know what they make with it and whether it gives them the image they had in mind.</p>
+        </div>
+        <div class="ux-question-panel">
+          <h2>Research questions</h2>
+          <article><span>RQ1</span><p>How and why do college students use ChatGPT’s image-generation features across academic, personal, and creative contexts?</p></article>
+          <article><span>RQ2</span><p>What helps or prevents college students from turning their ideas into satisfactory images through ChatGPT?</p></article>
+          <p>The usability tests checked whether perceived usability beat a SUS score of 70, and where the editing experience broke.</p>
+        </div>
+      </section>
 
-          <h3>Research questions</h3>
-          <ol class="ux-questions">
-            <li><strong>RQ1.</strong> How and why do college students use ChatGPT’s image-generation features across academic, personal, and creative contexts?</li>
-            <li><strong>RQ2.</strong> What helps or prevents college students from turning their ideas into satisfactory images through ChatGPT?</li>
-          </ol>
-          <p>The usability tests had a narrower goal: check whether perceived usability beats a SUS score of 70, and find where the editing experience breaks.</p>
-
-          <h3>My role</h3>
-          <ul>
-            <li>Ran two of the eight interviews, one in person (notes only) and one online (recorded).</li>
-            <li>Coded my own two transcripts first (14 codes) before we merged codes as a team.</li>
-            <li>Scored and analyzed the SUS responses for two participants (P03 and P04), then helped with the full eight-person analysis.</li>
-            <li>Worked with the team on the data, performance-metrics and self-reported-metrics reports and the affinity map. We divided the work equally.</li>
-          </ul>
-        </section>
-
-        <section id="methods" class="ux-document-section">
+      <section id="methods" class="ux-methods-band">
+        <div class="ux-web-section">
           <h2>Methods</h2>
-          <p>We recruited college students aged 18 or older who had used ChatGPT to generate or edit an image at least once. The image didn’t have to be for coursework. Everyone gave consent first and was asked not to share private information.</p>
-          <div class="ux-table-wrap">
-            <table class="ux-table">
-              <thead><tr><th scope="col">Study</th><th scope="col">Who</th><th scope="col">What we did</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">Interviews</th><td>8 students, 7 female, 1 male, aged 24 to 30</td><td>15 to 20 minute semi-structured interviews, in person or online. Coded the answers and grouped codes on an affinity map.</td></tr>
-                <tr><th scope="row">Think-aloud test</th><td>8 students, aged 21 to 34, from computer science, HCI, data science and architecture</td><td>Three editing tasks on one illustration. Participants thought aloud and could edit until satisfied.</td></tr>
-                <tr><th scope="row">SUS</th><td>8 students</td><td>Two of the same tasks, then the 10-item SUS in Qualtrics. T-test against 70 and a 90% confidence interval.</td></tr>
-              </tbody>
-            </table>
+          <p class="ux-section-intro">We recruited college students aged 18 or older who had used ChatGPT to generate or edit an image at least once. The image didn’t have to be for coursework. Everyone gave consent first and was asked not to share private information.</p>
+          <div class="ux-method-cards">
+            <article class="ux-method-card">
+              <p class="ux-method-number">8</p>
+              <h3>Interviews</h3>
+              <p class="ux-method-who">7 female, 1 male · Ages 24–30</p>
+              <p>15 to 20 minute semi-structured interviews, in person or online. Coded the answers and grouped codes on an affinity map.</p>
+            </article>
+            <article class="ux-method-card">
+              <p class="ux-method-number">8</p>
+              <h3>Think-aloud tests</h3>
+              <p class="ux-method-who">Ages 21–34 · CS, HCI, data science, architecture</p>
+              <p>Three editing tasks on one illustration. Participants thought aloud and could edit until satisfied.</p>
+            </article>
+            <article class="ux-method-card">
+              <p class="ux-method-number">8</p>
+              <h3>SUS responses</h3>
+              <p class="ux-method-who">10-item questionnaire</p>
+              <p>Two of the same tasks, then the SUS in Qualtrics. T-test against 70 and a 90% confidence interval.</p>
+            </article>
           </div>
+          <div class="ux-role-strip">
+            <h3>My role</h3>
+            <ul>
+              <li>Ran two interviews: one in person (notes only) and one online (recorded).</li>
+              <li>Coded my two transcripts first (14 codes) before merging codes as a team.</li>
+              <li>Scored SUS responses for P03 and P04, then helped with the full eight-person analysis.</li>
+              <li>Worked on the data, performance-metrics and self-reported-metrics reports and the affinity map. We divided the work equally.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-          <h3>The tasks</h3>
-          <p>Every participant started from the same illustration, Image A: a girl wearing a VR headset and holding controllers, and a boy next to her with no headset, waving.</p>
-          <figure class="ux-figure ux-stimulus">
-            <img src="../assets/chatgpt-image-ux/image-a.jpg" alt="Image A: an illustration of a girl wearing a VR headset and holding controllers beside a boy who is waving.">
-            <figcaption>Image A, the starting image for all three tasks.</figcaption>
-          </figure>
-          <p><strong>Scenario.</strong> You are making a poster for the virtual reality gaming club. You decide to use ChatGPT to edit this image for your poster.</p>
-          <ol class="ux-task-list">
-            <li><strong>Task 1.</strong> Edit the image so that the boy appears to be participating in the same VR experience as the girl. Keep the original illustration style and make the minimum necessary changes. You may make as many edits as you think are needed.</li>
-            <li><strong>Task 2.</strong> Make the illustration communicate that both people are using VR together, but the girl enjoys the experience while the boy does not. Keep the original style and change as little as necessary.</li>
-            <li><strong>Task 3.</strong> Edit the image so that it matches a new visual style as closely as possible, while preserving the main content and interaction shown in Image A. Keep the two characters, the VR-related elements and the overall scene recognizable.</li>
-          </ol>
-          <figure class="ux-figure ux-style-reference">
-            <img src="../assets/chatgpt-image-ux/task-3-style.jpg" alt="The black-and-white illustration used as the new visual style reference for Task 3.">
-            <figcaption>The new visual style given for Task 3.</figcaption>
-          </figure>
-          <p>The SUS survey came after Tasks 1 and 2.</p>
+      <section class="ux-web-section ux-tasks-section">
+        <div class="ux-section-heading-row">
+          <div>
+            <h2>The tasks</h2>
+            <p>Every participant started from Image A: a girl wearing a VR headset and holding controllers, and a boy with no headset, waving.</p>
+          </div>
+          <p class="ux-scenario-text"><strong>Scenario.</strong> You are making a poster for the virtual reality gaming club. You decide to use ChatGPT to edit this image for your poster.</p>
+        </div>
+        <div class="ux-task-cards">
+          <article><h3>Task 1</h3><p>Edit the image so the boy participates in the same VR experience as the girl. Keep the style and make the minimum necessary changes. Make as many edits as needed.</p></article>
+          <article><h3>Task 2</h3><p>Show both people using VR together, but the girl enjoys the experience while the boy does not. Keep the original style and change as little as necessary.</p></article>
+          <article><h3>Task 3</h3><p>Match a new visual style while preserving the main content, interaction, characters and VR elements.</p></article>
+        </div>
+        <figure class="ux-style-figure">
+          <img src="../assets/chatgpt-image-ux/task-3-style.jpg" alt="The black-and-white illustration used as the new visual style reference for Task 3.">
+          <figcaption>The new visual style given for Task 3.</figcaption>
+        </figure>
+        <details class="ux-record-details">
+          <summary>What we recorded in each session</summary>
+          <p>Task success, time, prompts and iterations, whether participants stayed in the same chat, rephrased, saw unexpected output or unwanted changes, felt frustration or satisfaction, or needed help. We rated tasks as no problem, minor problem, major problem, or failure/gave up. We also tagged prompt interpretation mismatch, unintended modifications, lost instructions, difficulty with localized editing, and image generation limits.</p>
+        </details>
+      </section>
 
-          <h3>What we recorded in each session</h3>
-          <p>For every task we noted whether it succeeded, how long it took, the number of prompts and iterations, whether the participant stayed in the same chat or started a new one, whether they had to rephrase, any unexpected output, requests implemented incorrectly, unwanted changes, frustration and satisfaction, and whether they needed help from the researcher. We rated each task as no problem, minor problem, major problem, or failure/gave up, then tagged issues such as prompt interpretation mismatch, unintended modifications, loss of previous instructions, difficulty with localized editing, and image generation limit.</p>
-        </section>
-
-        <section id="interviews" class="ux-document-section">
+      <section id="interviews" class="ux-interviews-band">
+        <div class="ux-web-section">
           <h2>What we found in the interviews</h2>
-          <h3>Who uses it and for what</h3>
-          <p>Academic, personal and creative uses all showed up. A PhD student asked for editable SVG diagrams of a research pipeline. A data science master’s student turned a hand sketch into a poster graphic. Others previewed how they would look in glasses, redesigned a bedroom, removed people from photos, made a LinkedIn headshot, or built coloring sheets for a preschool class.</p>
-          <p>People picked ChatGPT because they already knew it, it was free and it was fast. Four participants said Gemini made better-looking images, and some used both to compare. Almost everyone treated the result as a starting point.</p>
-          <blockquote class="ux-document-quote">
-            <p>“Using it to get 80 percent of the visual work done quickly is a huge time-saver for students. You just have to be ready to do a bit of editing yourself at the end.”</p>
-            <footer>MSc data science student</footer>
-          </blockquote>
+          <div class="ux-interview-grid">
+            <article class="ux-interview-card">
+              <h3>Who uses it and for what</h3>
+              <p>Academic, personal and creative uses all showed up. A PhD student asked for editable SVG diagrams of a research pipeline. A data science master’s student turned a hand sketch into a poster graphic. Others previewed how they would look in glasses, redesigned a bedroom, removed people from photos, made a LinkedIn headshot, or built coloring sheets for a preschool class.</p>
+              <p>People picked ChatGPT because they already knew it, it was free and it was fast. Four participants said Gemini made better-looking images, and some used both to compare. Almost everyone treated the result as a starting point.</p>
+              <blockquote><p>“Using it to get 80 percent of the visual work done quickly is a huge time-saver for students. You just have to be ready to do a bit of editing yourself at the end.”</p><footer>MSc data science student</footer></blockquote>
+            </article>
+            <article class="ux-interview-card">
+              <h3>What helps</h3>
+              <p>Uploading a photo, sketch or reference document. Writing detailed prompts that name layout, style and file type. Rating results with a reason. Restarting in a new chat with all the instructions merged into one. Finishing the last bit by hand in a tool like Canva.</p>
+              <h3>What gets in the way</h3>
+              <p>Unrequested changes were the big one: faces and hairstyles changed, text came out scrambled, and earlier instructions got lost in long chats. Some outputs looked AI-generated. One participant stopped after two or three corrections; another gave up at about five when results stopped improving.</p>
+              <blockquote><p>“From the text, it shows that it can understand what you want, but from the images, it cannot.”</p><footer>PhD student, on editing a research figure</footer></blockquote>
+              <p>Participants said they would not use it for professional headshots, exact charts, or precise labels. One avoided it because of environmental concerns and a feeling that it takes creating away from people.</p>
+            </article>
+          </div>
+          <div class="ux-affinity-block">
+            <div>
+              <h3>The affinity map</h3>
+              <p>We coded all eight interviews (24 codes) and grouped them into seven clusters. Three themes came out of it: AI for efficiency and idea generation, the need to keep refining AI output, and the importance of accuracy, quality and control.</p>
+            </div>
+            <figure class="ux-map-figure">
+              <a href="../assets/chatgpt-image-ux/affinity-map.jpg" target="_blank" rel="noreferrer"><img src="../assets/chatgpt-image-ux/affinity-map.jpg" alt="The affinity map from the study, showing groups for usage patterns, tool selection, limitations, workarounds, prompting and editing strategies."></a>
+              <figcaption>Click to view the affinity map full size.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
 
-          <h3>What helps</h3>
-          <p>Uploading a photo, sketch or reference document. Writing detailed prompts that name layout, style and file type. Rating results with a reason. Restarting in a new chat with all the instructions merged into one. Finishing the last bit by hand in a tool like Canva.</p>
+      <section id="personas" class="ux-web-section ux-personas-section">
+        <h2>User personas</h2>
+        <p class="ux-section-intro">From the interviews we built four personas. They share one need: help that keeps them in control of the result.</p>
+        <div class="ux-persona-summaries">
+          <p><strong>Lily Ng</strong> · PhD, computer science. Cares that research visuals are accurate and detailed; has little patience for many rounds of refining.</p>
+          <p><strong>Amy Vaugn</strong> · Master’s student. Uses AI daily; is bothered by changed faces, misspelled labels and manual editing.</p>
+          <p><strong>Irene Simpson</strong> · 4th-year BA philanthropy. Is wary of depending on AI and wants her work to reflect her own ideas.</p>
+          <p><strong>Cristina Law</strong> · 2nd-year HCI PhD. Likes AI for fast ideas, but not as her final design; gets frustrated when one small change alters the rest.</p>
+        </div>
+        <div class="ux-persona-gallery">
+          <figure><a href="../assets/chatgpt-image-ux/personas-1-2.jpg" target="_blank" rel="noreferrer"><img src="../assets/chatgpt-image-ux/personas-1-2.jpg" alt="Persona boards for Lily Ng and Amy Vaugn from the research PDF."></a><figcaption>Personas 1 and 2: Lily Ng and Amy Vaugn.</figcaption></figure>
+          <figure><a href="../assets/chatgpt-image-ux/personas-3-4.jpg" target="_blank" rel="noreferrer"><img src="../assets/chatgpt-image-ux/personas-3-4.jpg" alt="Persona boards for Irene Simpson and Cristina Law from the research PDF."></a><figcaption>Personas 3 and 4: Irene Simpson and Cristina Law.</figcaption></figure>
+        </div>
+      </section>
 
-          <h3>What gets in the way</h3>
-          <p>Unrequested changes were the big one: a face that stops looking like the person, a hairstyle that moves, people who are “slightly changed” when you only asked to remove the background. Text inside images came out scrambled. In long chats, earlier instructions got lost. Some outputs just looked AI-generated.</p>
-          <p>People had a limit for fixing things. One stopped after two or three corrections and started a new chat. Another gave up at about five, once the results stopped improving.</p>
-          <blockquote class="ux-document-quote">
-            <p>“From the text, it shows that it can understand what you want, but from the images, it cannot.”</p>
-            <footer>PhD student, on editing a research figure</footer>
-          </blockquote>
-          <p>Where they would not use it: professional headshots, exact charts, precise labels. One participant avoids it entirely, because of the environmental cost and because she feels it takes creating away from people.</p>
-
-          <h3>The affinity map</h3>
-          <p>We coded all eight interviews (24 codes) and grouped them into seven clusters: usage patterns, reasons for tool selection, limitations and workarounds, prompting and editing strategies, desired improvements, output evaluation criteria and opinions. Three themes came out of it: AI for efficiency and idea generation, the need to keep refining AI output, and the importance of accuracy, quality and control.</p>
-          <figure class="ux-figure ux-wide-figure">
-            <a href="../assets/chatgpt-image-ux/affinity-map.jpg" target="_blank" rel="noreferrer"><img src="../assets/chatgpt-image-ux/affinity-map.jpg" alt="The affinity map from the study, with groups for usage patterns, tool selection, limitations, workarounds, prompting and editing strategies."></a>
-            <figcaption>The team affinity map.</figcaption>
-          </figure>
-        </section>
-
-        <section id="personas" class="ux-document-section">
-          <h2>User personas</h2>
-          <p>From the interviews we built four personas. They share one need: help that keeps them in control of the result.</p>
-          <ul>
-            <li><strong>Lily Ng</strong> (PhD, computer science) is open to AI for research visuals but cares that the output is accurate and detailed, and has little patience for many rounds of refining.</li>
-            <li><strong>Amy Vaugn</strong> (master’s student) is tech savvy and uses AI daily for school and for fun. She is bothered by changed faces, misspelled labels and the manual editing she still has to do.</li>
-            <li><strong>Irene Simpson</strong> (4th-year BA philanthropy) is wary of depending on AI and wants her work to reflect her own ideas.</li>
-            <li><strong>Cristina Law</strong> (2nd-year HCI PhD) likes AI for fast ideas but doesn’t want an AI-generated image as her final design, and gets frustrated when one small change alters the rest of the image.</li>
-          </ul>
-          <figure class="ux-figure ux-wide-figure">
-            <a href="../assets/chatgpt-image-ux/personas-1-2.jpg" target="_blank" rel="noreferrer"><img src="../assets/chatgpt-image-ux/personas-1-2.jpg" alt="The persona boards for Lily Ng and Amy Vaugn, as presented in the research PDF."></a>
-            <figcaption>Personas 1 and 2: Lily Ng and Amy Vaugn.</figcaption>
-          </figure>
-          <figure class="ux-figure ux-wide-figure">
-            <a href="../assets/chatgpt-image-ux/personas-3-4.jpg" target="_blank" rel="noreferrer"><img src="../assets/chatgpt-image-ux/personas-3-4.jpg" alt="The persona boards for Irene Simpson and Cristina Law, as presented in the research PDF."></a>
-            <figcaption>Personas 3 and 4: Irene Simpson and Cristina Law.</figcaption>
-          </figure>
-        </section>
-
-        <section id="usability" class="ux-document-section">
+      <section id="usability" class="ux-results-band">
+        <div class="ux-web-section">
           <h2>Think-aloud usability test</h2>
-          <p>Eight participants did the three editing tasks above while talking through what they were doing and expecting. We watched where they hesitated, repeated themselves or got unwanted results, and noted success, prompts, iterations and issues for each task.</p>
-
-          <h3>Task results</h3>
-          <div class="ux-table-wrap">
-            <table class="ux-table">
-              <thead><tr><th scope="col">Task</th><th scope="col">Direct success</th><th scope="col">Needed extra prompting</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">1. Boy joins VR</th><td>7 of 8</td><td>1 (missing controller)</td></tr>
-                <tr><th scope="row">2. Boy unhappy, girl happy</th><td>6 of 8</td><td>2 (one boy without a headset)</td></tr>
-                <tr><th scope="row">3. Restyle</th><td>7 of 8</td><td>1 (three prompts, hairstyle changed)</td></tr>
-              </tbody>
-            </table>
+          <p class="ux-section-intro">Eight participants completed three editing tasks while talking through what they were doing and expecting.</p>
+          <div class="ux-results-grid">
+            <div class="ux-results-table">
+              <h3>Task results</h3>
+              <div class="ux-table-wrap">
+                <table class="ux-table">
+                  <thead><tr><th scope="col">Task</th><th scope="col">Direct success</th><th scope="col">Extra prompting</th></tr></thead>
+                  <tbody>
+                    <tr><th scope="row">Boy joins VR</th><td>7 of 8</td><td>1 (missing controller)</td></tr>
+                    <tr><th scope="row">Boy unhappy, girl happy</th><td>6 of 8</td><td>2 (one boy without a headset)</td></tr>
+                    <tr><th scope="row">Restyle</th><td>7 of 8</td><td>1 (three prompts, hairstyle changed)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Nobody failed. All 24 attempts ended with an image the participant accepted (95% confidence interval for completion: 87.95% to 100%). With only eight people, the interval is still wide.</p>
+              <h3>Issues we saw while they thought aloud</h3>
+              <ul class="ux-issue-list">
+                <li><span>Output didn’t match the request</span><strong>3 of 8</strong></li>
+                <li><span>Unintended changes while editing</span><strong>2 of 8</strong></li>
+                <li><span>Login difficulties</span><strong>2 of 8</strong></li>
+                <li><span>Unsure if the chat remembered earlier context</span><strong>1 of 8</strong></li>
+              </ul>
+              <p>The unintended changes included VR glasses added to the boy and a changed hairstyle and hair color on the girl. One participant switched to the phone app after a desktop login problem. Another retyped everything because they weren’t sure ChatGPT remembered it.</p>
+            </div>
+            <div class="ux-sus-panel">
+              <div class="ux-sus-summary">
+                <p>SUS survey</p>
+                <h3>Mean score <strong>80.0</strong></h3>
+                <p>After Tasks 1 and 2, each participant completed the 10-item SUS in Qualtrics.</p>
+                <p>The usual SUS average is 68. Two people scored under 70.</p>
+                <dl>
+                  <div><dt>SD</dt><dd>14.21</dd></div>
+                  <div><dt>One-tailed t-test vs. 70</dt><dd>t(7) = 1.99 · p = .043</dd></div>
+                  <div><dt>90% confidence interval</dt><dd>70.48–89.52</dd></div>
+                </dl>
+                <p class="ux-sus-note">The lower bound is barely above 70. SUS doesn’t say why, so I read it next to the think-aloud notes.</p>
+              </div>
+              <figure class="ux-sus-image"><a href="../assets/chatgpt-image-ux/sus-scores.jpg" target="_blank" rel="noreferrer"><img src="../assets/chatgpt-image-ux/sus-scores.jpg" alt="SUS scores for eight participants: 100, 77.5, 72.5, 57.5, 67.5, 87.5, 95, and 82.5. Gray bars are below 70."></a><figcaption>Participant SUS scores. Click to view full size.</figcaption></figure>
+            </div>
           </div>
-          <p>Nobody failed. All 24 attempts ended with an image the participant accepted (95% confidence interval for completion: 87.95% to 100%). With only eight people, the interval is still wide.</p>
-
-          <h3>Issues we saw while they thought aloud</h3>
-          <div class="ux-table-wrap">
-            <table class="ux-table ux-issue-table">
-              <thead><tr><th scope="col">Issue</th><th scope="col">Participants</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">Output didn’t match the request</th><td>3 of 8</td></tr>
-                <tr><th scope="row">Unintended changes while editing</th><td>2 of 8</td></tr>
-                <tr><th scope="row">Login difficulties</th><td>2 of 8</td></tr>
-                <tr><th scope="row">Unsure if the chat remembered earlier context</th><td>1 of 8</td></tr>
-              </tbody>
-            </table>
+          <div class="ux-takeaway">
+            <h3>Putting the usability results together</h3>
+            <p>People rate it as easy and they can finish the tasks. The trouble starts when a result is close but not right. Fixing one detail without breaking the others is hard, and that is where students get annoyed and go finish the job themselves.</p>
           </div>
-          <p>The unintended changes included VR glasses added to the boy and a changed hairstyle and hair color on the girl. One participant couldn’t use the desktop version and switched to the phone app. Another retyped everything because they weren’t sure ChatGPT still remembered it.</p>
+        </div>
+      </section>
 
-          <h3>SUS survey</h3>
-          <p>Right after Tasks 1 and 2, each participant filled out the 10-question System Usability Scale in Qualtrics. We wanted to know whether the average would beat 70.</p>
-          <figure class="ux-figure ux-sus-figure">
-            <a href="../assets/chatgpt-image-ux/sus-scores.jpg" target="_blank" rel="noreferrer"><img src="../assets/chatgpt-image-ux/sus-scores.jpg" alt="SUS scores for eight participants: 100, 77.5, 72.5, 57.5, 67.5, 87.5, 95, and 82.5. Gray bars are below 70."></a>
-            <figcaption>SUS scores. Gray bars are below 70.</figcaption>
-          </figure>
-          <p>The mean was 80.0 (SD 14.21), higher than the usual average of 68. A one-tailed t-test against 70 was significant, t(7) = 1.99, p = .043, with a 90% confidence interval of 70.48 to 89.52. That lower bound is barely above 70, and two people scored under it. SUS doesn’t say why, so I read it next to the think-aloud notes. My own two participants gave 95 and 82.5, a mean of 88.75.</p>
-
-          <h3>Putting the usability results together</h3>
-          <p>People rate it as easy and they can finish the tasks. The trouble starts when a result is close but not right. Fixing one detail without breaking the others is hard, and that is where students get annoyed and go finish the job themselves.</p>
-        </section>
-
-        <section id="reflection" class="ux-document-section">
-          <h2>Reflection</h2>
-          <h3>What I would change in the design</h3>
-          <ul>
-            <li><strong>Follow instructions and keep context.</strong> Do what the prompt says, remember earlier instructions, and show whether past context is being used.</li>
-            <li><strong>Protect details.</strong> Text, skin tone, lighting and facial features should be treated as constraints, not suggestions.</li>
-            <li><strong>Edit a region.</strong> Let people select an area, describe a change, and keep everything else, the way Photoshop mixes selection with text.</li>
-          </ul>
-
-          <h3>Challenges and what I’d do differently</h3>
-          <p>Our sample is small and mostly female graduate students, so I would not generalize it to all students. Some interviews were written notes, not recordings, so quotes there are less exact. The SUS study used two tasks while the think-aloud used three, which made them harder to compare. Next time I’d record every session, use the same tasks in both tests and recruit undergraduates on purpose.</p>
-
-          <h3>Next steps</h3>
-          <p>Test precise edits, keeping elements the same, and use of earlier context, with a larger and more varied group.</p>
-
-          <p class="ux-acknowledgment">Quotes are lightly edited for readability and participants are not named. Thanks to Ying, Raffa and Titi for the teamwork.</p>
-        </section>
-      </article>
+      <section id="reflection" class="ux-web-section ux-reflection-section">
+        <h2>Reflection</h2>
+        <div class="ux-reflection-grid">
+          <article>
+            <h3>What I would change in the design</h3>
+            <ul>
+              <li><strong>Follow instructions and keep context.</strong> Do what the prompt says, remember earlier instructions, and show whether past context is being used.</li>
+              <li><strong>Protect details.</strong> Text, skin tone, lighting and facial features should be treated as constraints, not suggestions.</li>
+              <li><strong>Edit a region.</strong> Let people select an area, describe a change, and keep everything else, the way Photoshop mixes selection with text.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Challenges and what I’d do differently</h3>
+            <p>Our sample is small and mostly female graduate students, so I would not generalize it to all students. Some interviews were written notes, not recordings, so quotes there are less exact. The SUS study used two tasks while the think-aloud used three, which made them harder to compare.</p>
+            <p>Next time I’d record every session, use the same tasks in both tests and recruit undergraduates on purpose.</p>
+            <h3>Next steps</h3>
+            <p>Test precise edits, keeping elements the same, and use of earlier context, with a larger and more varied group.</p>
+          </article>
+        </div>
+        <p class="ux-acknowledgment">Quotes are lightly edited for readability and participants are not named. Thanks to Ying, Raffa and Titi for the teamwork.</p>
+      </section>
     </main>
 
     <footer class="site-footer">
